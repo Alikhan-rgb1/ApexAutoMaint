@@ -1,0 +1,4488 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <meta name="description" content="ApexAutoMaint - Professional car repair service in UAE. Body repair, electrical work, mechanical service, ceramic coating, AC service, transmission repair. ISO 9001 certified. 24/7 concierge. Dubai & Sharjah.">
+
+    <meta name="keywords" content="car repair UAE, auto service Dubai Sharjah, body repair, electrical repair, ceramic coating, AC service, transmission repair, concierge service, insurance approved">
+
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="ApexAutoMaint - Professional Car Repair & Service UAE">
+
+    <meta property="og:description" content="Expert vehicle repair and maintenance. Body repair, electrical diagnostics, mechanical service, ceramic coating, AC service. ISO 9001 certified. 24/7 concierge pickup & delivery.">
+
+    <meta property="og:type" content="business.business">
+
+
+```
+
+<title>ApexAutoMaint - Professional Car Repair Service Dubai & Sharjah</title>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&family=Playfair+Display:wght@700;800;900&display=swap');
+
+
+    * {
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+    }
+
+
+    :root {
+
+        --dark: #0a0a0a;
+
+        --white: #ffffff;
+
+        --gold: #d4af37;
+
+        --gold-dark: #b8941f;
+
+        --gray: #1a1a1a;
+
+        --text-light: #666;
+
+        --light-bg: #f5f5f5;
+
+        --border: #e0e0e0;
+
+    }
+
+
+    html {
+
+        scroll-behavior: smooth;
+
+        -webkit-font-smoothing: antialiased;
+
+    }
+
+
+    body {
+
+        font-family: 'Poppins', sans-serif;
+
+        background: var(--white);
+
+        color: var(--gray);
+
+        line-height: 1.7;
+
+    }
+
+
+    /* BANNER */
+
+    .banner {
+
+        background: linear-gradient(90deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+        padding: 16px 24px;
+
+        text-align: center;
+
+        font-weight: 700;
+
+        font-size: 13px;
+
+        letter-spacing: 1.5px;
+
+        text-transform: uppercase;
+
+    }
+
+
+    /* LANGUAGE */
+
+    .lang-toggle {
+
+        position: fixed;
+
+        top: 24px;
+
+        right: 24px;
+
+        z-index: 1001;
+
+        display: flex;
+
+        gap: 8px;
+
+        background: var(--white);
+
+        border: 2px solid var(--gold);
+
+        border-radius: 10px;
+
+        padding: 12px;
+
+    }
+
+
+    .lang-btn {
+
+        padding: 8px 14px;
+
+        border: none;
+
+        background: transparent;
+
+        cursor: pointer;
+
+        font-weight: 700;
+
+        border-radius: 6px;
+
+        font-size: 11px;
+
+        letter-spacing: 1px;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .lang-btn.active {
+
+        background: var(--gold);
+
+        color: var(--dark);
+
+    }
+
+
+    /* HEADER */
+
+    header {
+
+        position: sticky;
+
+        top: 0;
+
+        background: var(--white);
+
+        border-bottom: 2px solid var(--border);
+
+        z-index: 1000;
+
+        padding: 20px 48px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+    }
+
+
+    .logo {
+
+        font-family: 'Playfair Display', serif;
+
+        font-size: 32px;
+
+        font-weight: 900;
+
+        color: var(--dark);
+
+    }
+
+
+    .logo-span {
+
+        color: var(--gold);
+
+    }
+
+
+    nav {
+
+        display: flex;
+
+        gap: 40px;
+
+        align-items: center;
+
+    }
+
+
+    nav a {
+
+        text-decoration: none;
+
+        color: var(--gray);
+
+        font-weight: 600;
+
+        font-size: 12px;
+
+        letter-spacing: 0.8px;
+
+        text-transform: uppercase;
+
+        position: relative;
+
+        transition: color 0.3s;
+
+    }
+
+
+    nav a::after {
+
+        content: '';
+
+        position: absolute;
+
+        bottom: -4px;
+
+        left: 0;
+
+        width: 0;
+
+        height: 2px;
+
+        background: var(--gold);
+
+        transition: width 0.3s;
+
+    }
+
+
+    nav a:hover::after {
+
+        width: 100%;
+
+    }
+
+
+    .btn-call {
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+        padding: 13px 28px;
+
+        border: none;
+
+        border-radius: 6px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        font-size: 11px;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .btn-call:hover {
+
+        transform: translateY(-2px);
+
+    }
+
+
+    /* HERO */
+
+    .hero {
+
+        background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+
+        color: var(--white);
+
+        padding: 120px 48px;
+
+        text-align: center;
+
+        position: relative;
+
+        overflow: hidden;
+
+    }
+
+
+    .hero::before {
+
+        content: '';
+
+        position: absolute;
+
+        top: -50%;
+
+        right: -20%;
+
+        width: 800px;
+
+        height: 800px;
+
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+
+    }
+
+
+    .hero-content {
+
+        position: relative;
+
+        z-index: 2;
+
+        max-width: 900px;
+
+        margin: 0 auto;
+
+    }
+
+
+    .hero-tag {
+
+        font-size: 12px;
+
+        color: var(--gold);
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+
+        font-weight: 700;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .hero h1 {
+
+        font-family: 'Playfair Display', serif;
+
+        font-size: 64px;
+
+        font-weight: 900;
+
+        line-height: 1.2;
+
+        margin-bottom: 28px;
+
+    }
+
+
+    .hero h1 .highlight {
+
+        color: var(--gold);
+
+    }
+
+
+    .hero p {
+
+        font-size: 18px;
+
+        color: #ccc;
+
+        margin-bottom: 40px;
+
+        line-height: 1.8;
+
+        max-width: 700px;
+
+        margin-left: auto;
+
+        margin-right: auto;
+
+    }
+
+
+    .hero-stats {
+
+        display: grid;
+
+        grid-template-columns: repeat(5, 1fr);
+
+        gap: 32px;
+
+        margin: 60px 0;
+
+    }
+
+
+    .stat-num {
+
+        font-size: 32px;
+
+        font-weight: 900;
+
+        color: var(--gold);
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .stat-label {
+
+        font-size: 12px;
+
+        color: #999;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1px;
+
+    }
+
+
+    .hero-btns {
+
+        display: flex;
+
+        gap: 24px;
+
+        justify-content: center;
+
+    }
+
+
+    .btn-primary {
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+        padding: 16px 40px;
+
+        border: none;
+
+        border-radius: 6px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        font-size: 12px;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        text-decoration: none;
+
+        display: inline-block;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .btn-primary:hover {
+
+        transform: translateY(-3px);
+
+    }
+
+
+    .btn-secondary {
+
+        background: transparent;
+
+        color: var(--white);
+
+        padding: 16px 40px;
+
+        border: 2px solid var(--gold);
+
+        border-radius: 6px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        font-size: 12px;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        text-decoration: none;
+
+        display: inline-block;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .btn-secondary:hover {
+
+        background: var(--gold);
+
+        color: var(--dark);
+
+    }
+
+
+    /* SECTIONS */
+
+    .section {
+
+        padding: 100px 48px;
+
+        background: var(--white);
+
+    }
+
+
+    .section:nth-child(odd) {
+
+        background: var(--light-bg);
+
+    }
+
+
+    .section-header {
+
+        text-align: center;
+
+        margin-bottom: 60px;
+
+    }
+
+
+    .section-tag {
+
+        font-size: 12px;
+
+        color: var(--gold);
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+
+        font-weight: 700;
+
+        margin-bottom: 16px;
+
+    }
+
+
+    .section-title {
+
+        font-family: 'Playfair Display', serif;
+
+        font-size: 48px;
+
+        font-weight: 900;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .section-desc {
+
+        font-size: 16px;
+
+        color: var(--text-light);
+
+        max-width: 650px;
+
+        margin: 0 auto;
+
+    }
+
+
+    /* GRID */
+
+    .grid-4 {
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 24px;
+
+    }
+
+
+    .grid-3 {
+
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 28px;
+
+    }
+
+
+    .grid-2 {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 32px;
+
+        max-width: 1200px;
+
+        margin: 0 auto;
+
+    }
+
+
+    /* CARDS */
+
+    .card {
+
+        padding: 32px;
+
+        border: 2px solid var(--border);
+
+        border-radius: 8px;
+
+        transition: all 0.3s;
+
+        background: var(--white);
+
+    }
+
+
+    .card:hover {
+
+        border-color: var(--gold);
+
+        transform: translateY(-4px);
+
+        box-shadow: 0 12px 32px rgba(212, 175, 55, 0.15);
+
+    }
+
+
+    .card-icon {
+
+        font-size: 42px;
+
+        margin-bottom: 16px;
+
+    }
+
+
+    .card h3 {
+
+        font-size: 18px;
+
+        font-weight: 700;
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .card p {
+
+        color: var(--text-light);
+
+        font-size: 14px;
+
+        line-height: 1.8;
+
+    }
+
+
+    /* FAQ */
+
+    .faq-item {
+
+        border-bottom: 2px solid var(--border);
+
+        padding: 24px 0;
+
+        cursor: pointer;
+
+    }
+
+
+    .faq-q {
+
+        font-weight: 700;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        font-size: 15px;
+
+    }
+
+
+    .faq-toggle {
+
+        color: var(--gold);
+
+        font-size: 20px;
+
+        transition: transform 0.3s;
+
+    }
+
+
+    .faq-item.open .faq-toggle {
+
+        transform: rotate(180deg);
+
+    }
+
+
+    .faq-a {
+
+        font-size: 14px;
+
+        color: var(--text-light);
+
+        margin-top: 16px;
+
+        display: none;
+
+        line-height: 1.8;
+
+    }
+
+
+    .faq-item.open .faq-a {
+
+        display: block;
+
+    }
+
+
+    /* INSURANCE */
+
+    .insurance {
+
+        background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+
+        color: var(--white);
+
+        text-align: center;
+
+    }
+
+
+    .insurance-logos {
+
+        display: grid;
+
+        grid-template-columns: repeat(6, 1fr);
+
+        gap: 16px;
+
+        margin-top: 40px;
+
+    }
+
+
+    .insurance-logo {
+
+        background: rgba(255, 255, 255, 0.08);
+
+        border: 2px solid var(--gold);
+
+        padding: 18px;
+
+        border-radius: 6px;
+
+        font-weight: 700;
+
+        font-size: 12px;
+
+    }
+
+
+    /* CTA */
+
+    .cta {
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+    }
+
+
+    .cta h2 {
+
+        font-family: 'Playfair Display', serif;
+
+        font-size: 44px;
+
+        font-weight: 900;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .cta p {
+
+        font-size: 16px;
+
+        max-width: 550px;
+
+        margin: 0 auto 32px;
+
+    }
+
+
+    /* CONTACT */
+
+    .contact-grid {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 48px;
+
+    }
+
+
+    .contact-block {
+
+        border-left: 3px solid var(--gold);
+
+        padding-left: 24px;
+
+    }
+
+
+    .contact-block h3 {
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1.5px;
+
+        color: var(--gold);
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .contact-block p, .contact-block a {
+
+        font-size: 14px;
+
+        color: var(--text-light);
+
+        line-height: 1.8;
+
+    }
+
+
+    .contact-block a {
+
+        color: var(--gold);
+
+        text-decoration: none;
+
+        font-weight: 700;
+
+    }
+
+
+    .waze-btn {
+
+        display: inline-block;
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+        padding: 10px 18px;
+
+        border-radius: 4px;
+
+        text-decoration: none;
+
+        font-weight: 700;
+
+        font-size: 10px;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        margin-top: 12px;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .waze-btn:hover {
+
+        transform: translateY(-2px);
+
+    }
+
+
+    .contact-form {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 16px;
+
+    }
+
+
+    .form-group {
+
+        display: flex;
+
+        flex-direction: column;
+
+    }
+
+
+    .form-group label {
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1px;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .form-group input,
+
+    .form-group textarea {
+
+        padding: 12px 14px;
+
+        border: 2px solid var(--border);
+
+        border-radius: 4px;
+
+        font-family: inherit;
+
+        font-size: 14px;
+
+        transition: border-color 0.3s;
+
+        background: var(--light-bg);
+
+    }
+
+
+    .form-group input:focus,
+
+    .form-group textarea:focus {
+
+        outline: none;
+
+        border-color: var(--gold);
+
+        background: var(--white);
+
+    }
+
+
+    .form-group textarea {
+
+        min-height: 120px;
+
+        resize: vertical;
+
+    }
+
+
+    /* FOOTER */
+
+    footer {
+
+        background: var(--dark);
+
+        color: var(--white);
+
+        padding: 50px 48px 30px;
+
+        border-top: 2px solid var(--gold);
+
+    }
+
+
+    .footer-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 40px;
+
+        max-width: 1200px;
+
+        margin: 0 auto 30px;
+
+    }
+
+
+    .footer-col h4 {
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1.5px;
+
+        color: var(--gold);
+
+        margin-bottom: 14px;
+
+    }
+
+
+    .footer-col a,
+
+    .footer-col p {
+
+        font-size: 13px;
+
+        color: #999;
+
+        line-height: 1.8;
+
+        text-decoration: none;
+
+    }
+
+
+    .footer-col a:hover {
+
+        color: var(--gold);
+
+    }
+
+
+    .footer-bottom {
+
+        text-align: center;
+
+        padding-top: 20px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        font-size: 12px;
+
+        color: #666;
+
+    }
+
+
+    /* FLOATING */
+
+    .floating {
+
+        position: fixed;
+
+        bottom: 32px;
+
+        right: 32px;
+
+        display: flex;
+
+        gap: 12px;
+
+        flex-direction: column;
+
+        z-index: 999;
+
+    }
+
+
+    .float-btn {
+
+        width: 60px;
+
+        height: 60px;
+
+        border-radius: 50%;
+
+        border: none;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        cursor: pointer;
+
+        font-size: 24px;
+
+        transition: all 0.3s;
+
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+
+        text-decoration: none;
+
+    }
+
+
+    .float-call {
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+    }
+
+
+    .float-call:hover {
+
+        transform: scale(1.12);
+
+    }
+
+
+    .float-whatsapp {
+
+        background: #25d366;
+
+        color: var(--white);
+
+    }
+
+
+    .float-whatsapp:hover {
+
+        transform: scale(1.12);
+
+    }
+
+
+    .hidden { display: none; }
+
+
+    @media (max-width: 1024px) {
+
+        .grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+        .grid-3 { grid-template-columns: repeat(2, 1fr); }
+
+        .hero-stats { grid-template-columns: repeat(2, 1fr); }
+
+        .insurance-logos { grid-template-columns: repeat(3, 1fr); }
+
+        nav { gap: 20px; }
+
+        nav a { font-size: 11px; }
+
+    }
+
+
+    @media (max-width: 640px) {
+
+        header { flex-direction: column; gap: 16px; padding: 12px 16px; }
+
+        nav { display: none; }
+
+        .logo { font-size: 22px; }
+
+        .hero { padding: 60px 16px; }
+
+        .hero h1 { font-size: 36px; }
+
+        .hero-btns { flex-direction: column; }
+
+        .section { padding: 60px 16px; }
+
+        .section-title { font-size: 32px; }
+
+        .grid-4, .grid-3 { grid-template-columns: 1fr; }
+
+        .grid-2 { grid-template-columns: 1fr; }
+
+        .contact-grid { grid-template-columns: 1fr; }
+
+        .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+
+        .insurance-logos { grid-template-columns: repeat(2, 1fr); }
+
+        .banner { font-size: 11px; padding: 12px; }
+
+    }
+
+</style>
+
+```
+
+
+</head>
+
+<body>
+
+    <!-- BANNER -->
+
+    <div class="banner">
+
+        ⭐ EVERY 5TH ENGINE OIL CHANGE IS FREE | 24/7 CONCIERGE | ISO 9001 CERTIFIED ⭐
+
+    </div>
+
+
+```
+
+<!-- LANGUAGE -->
+
+<div class="lang-toggle">
+
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+
+    <button class="lang-btn" onclick="setLang('ru')">РУ</button>
+
+    <button class="lang-btn" onclick="setLang('ar')">AR</button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo"><span class="logo-span">Apex</span>AutoMaint</div>
+
+    <nav>
+
+        <a href="#services">Services</a>
+
+        <a href="#faq">FAQ</a>
+
+        <a href="#contact">Contact</a>
+
+        <a href="tel:+971522581990" class="btn-call">📞 +971 52 258 1990</a>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO (EN) -->
+
+<section class="hero" id="heroEN">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">Professional Auto Repair & Maintenance</div>
+
+        <h1>Expert Service for Your <span class="highlight">Vehicle</span></h1>
+
+        <p>Complete auto repair and maintenance services. Body repair, electrical work, mechanical service, ceramic coating, AC service, and more. Available 24/7 across UAE.</p>
+
+       
+
+        <div class="hero-stats">
+
+            <div>
+
+                <div class="stat-num">500+</div>
+
+                <div class="stat-label">Vehicles Serviced</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">4.9★</div>
+
+                <div class="stat-label">Customer Rating</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">ISO 9001</div>
+
+                <div class="stat-label">Certified</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">100%</div>
+
+                <div class="stat-label">Warranty</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">24/7</div>
+
+                <div class="stat-label">Support</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-btns">
+
+            <a href="https://wa.me/971522581990" class="btn-primary">💬 WhatsApp Us</a>
+
+            <a href="tel:+971522581990" class="btn-secondary">📞 Call Now</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HERO (RU) -->
+
+<section class="hero hidden" id="heroRU">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">Профессиональный ремонт и обслуживание авто</div>
+
+        <h1>Экспертный сервис для вашего <span class="highlight">автомобиля</span></h1>
+
+        <p>Полный спектр услуг ремонта и обслуживания. Ремонт кузова, электрика, механика, керамическое покрытие, кондиционер и многое другое. Доступно 24/7 по всей ОАЭ.</p>
+
+       
+
+        <div class="hero-stats">
+
+            <div>
+
+                <div class="stat-num">500+</div>
+
+                <div class="stat-label">Автомобилей отремонтировано</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">4.9★</div>
+
+                <div class="stat-label">Рейтинг клиентов</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">ISO 9001</div>
+
+                <div class="stat-label">Сертифицировано</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">100%</div>
+
+                <div class="stat-label">Гарантия</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">24/7</div>
+
+                <div class="stat-label">Поддержка</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-btns">
+
+            <a href="https://wa.me/971522581990" class="btn-primary">💬 Напишите в WhatsApp</a>
+
+            <a href="tel:+971522581990" class="btn-secondary">📞 Позвонить</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HERO (AR) -->
+
+<section class="hero hidden" id="heroAR" dir="rtl">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">خدمة إصلاح وصيانة السيارات الاحترافية</div>
+
+        <h1>خدمة خبراء <span class="highlight">لسيارتك</span></h1>
+
+        <p>نطاق كامل من خدمات الإصلاح والصيانة. إصلاح الهيكل والكهرباء والميكانيكا وطلاء السيراميك وخدمة التكييف وغير ذلك. متاح 24/7 في جميع أنحاء الإمارات.</p>
+
+       
+
+        <div class="hero-stats">
+
+            <div>
+
+                <div class="stat-num">500+</div>
+
+                <div class="stat-label">السيارات المرممة</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">4.9★</div>
+
+                <div class="stat-label">تقييم العملاء</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">ISO 9001</div>
+
+                <div class="stat-label">معتمد</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">100%</div>
+
+                <div class="stat-label">الضمان</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">24/7</div>
+
+                <div class="stat-label">الدعم</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-btns">
+
+            <a href="https://wa.me/971522581990" class="btn-primary">💬 راسلنا على واتس</a>
+
+            <a href="tel:+971522581990" class="btn-secondary">📞 اتصل بنا</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES (EN) -->
+
+<section class="section" id="servicesEN" id="services">
+
+    <div class="section-header">
+
+        <div class="section-tag">What We Offer</div>
+
+        <h2 class="section-title">Our Services</h2>
+
+        <p class="section-desc">Complete solutions for all your vehicle repair and maintenance needs. Professional work with guaranteed results.</p>
+
+    </div>
+
+
+    <div class="grid-4">
+
+        <div class="card">
+
+            <div class="card-icon">🚗</div>
+
+            <h3>Body Repair</h3>
+
+            <p>Expert dent removal, panel replacement, and frame repair. Restore your car to original condition.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">⚡</div>
+
+            <h3>Electrical Diagnostics</h3>
+
+            <p>Complete electrical system diagnosis. Battery, alternator, wiring, sensors repairs.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔧</div>
+
+            <h3>Mechanical Repair</h3>
+
+            <p>Engine, transmission, suspension work. All mechanical repairs by certified technicians.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🛡️</div>
+
+            <h3>Ceramic Coating & PPF</h3>
+
+            <p>Paint protection film and ceramic coating. Protect your car from UAE climate and damage.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">❄️</div>
+
+            <h3>AC Service & Repair</h3>
+
+            <p>Complete air conditioning service and repair. Essential for UAE's extreme heat conditions.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🎨</div>
+
+            <h3>Paint & Detailing</h3>
+
+            <p>Professional painting, color matching, and protective coatings. Showroom-quality finish.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔍</div>
+
+            <h3>Diagnostics</h3>
+
+            <p>Complete vehicle diagnostics using latest equipment. Identify issues before they worsen.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🚙</div>
+
+            <h3>24/7 Concierge Service</h3>
+
+            <p>We pick up your vehicle, complete repair, deliver it back. No hassle, total convenience.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES (RU) -->
+
+<section class="section hidden" id="servicesRU">
+
+    <div class="section-header">
+
+        <div class="section-tag">Наши услуги</div>
+
+        <h2 class="section-title">Полный спектр обслуживания</h2>
+
+        <p class="section-desc">Полное решение для всех потребностей ремонта и обслуживания вашего автомобиля. Профессиональная работа с гарантированным результатом.</p>
+
+    </div>
+
+
+    <div class="grid-4">
+
+        <div class="card">
+
+            <div class="card-icon">🚗</div>
+
+            <h3>Ремонт кузова</h3>
+
+            <p>Удаление вмятин, замена панелей, ремонт рамы. Восстанавливаем в идеальное состояние.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">⚡</div>
+
+            <h3>Электрическая диагностика</h3>
+
+            <p>Полная диагностика электрических систем. Батарея, генератор, проводка, датчики.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔧</div>
+
+            <h3>Механический ремонт</h3>
+
+            <p>Двигатель, коробка передач, подвеска. Все работы выполняют сертифицированные техники.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🛡️</div>
+
+            <h3>Керамическое покрытие & PPF</h3>
+
+            <p>Защита краски от повреждений и коррозии. Защита от климата ОАЭ и физических повреждений.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">❄️</div>
+
+            <h3>Сервис кондиционера</h3>
+
+            <p>Полное обслуживание и ремонт кондиционера. Необходимо для экстремальной жары ОАЭ.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🎨</div>
+
+            <h3>Покраска и детейлинг</h3>
+
+            <p>Профессиональная покраска, подбор цвета, защитные покрытия. Качество автосалона.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔍</div>
+
+            <h3>Диагностика</h3>
+
+            <p>Полная диагностика современным оборудованием. Выявляем проблемы до их усугубления.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🚙</div>
+
+            <h3>Консьерж сервис 24/7</h3>
+
+            <p>Забираем машину, выполняем ремонт, доставляем готовой. Полное удобство для вас.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES (AR) -->
+
+<section class="section hidden" id="servicesAR" dir="rtl">
+
+    <div class="section-header">
+
+        <div class="section-tag">خدماتنا</div>
+
+        <h2 class="section-title">نطاق كامل من الخدمات</h2>
+
+        <p class="section-desc">حل شامل لجميع احتياجات إصلاح وصيانة سيارتك. عمل احترافي مع نتائج مضمونة.</p>
+
+    </div>
+
+
+    <div class="grid-4">
+
+        <div class="card">
+
+            <div class="card-icon">🚗</div>
+
+            <h3>إصلاح الهيكل</h3>
+
+            <p>إزالة الخدوش، استبدال الألواح، إصلاح الإطار. نعيد السيارة لحالتها الأصلية.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">⚡</div>
+
+            <h3>التشخيص الكهربائي</h3>
+
+            <p>تشخيص شامل للأنظمة الكهربائية. البطارية والمولد والأسلاك والمستشعرات.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔧</div>
+
+            <h3>الإصلاح الميكانيكي</h3>
+
+            <p>المحرك والناقل والتعليق. جميع الأعمال الميكانيكية بفنيين معتمدين.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🛡️</div>
+
+            <h3>طلاء السيراميك و PPF</h3>
+
+            <p>حماية الطلاء من الأضرار والصدأ. حماية من مناخ الإمارات والأضرار الفيزيائية.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">❄️</div>
+
+            <h3>خدمة التكييف</h3>
+
+            <p>صيانة وإصلاح التكييف الكامل. ضروري لحرارة الإمارات الشديدة.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🎨</div>
+
+            <h3>الطلاء والتفاصيل</h3>
+
+            <p>طلاء احترافي ومطابقة الألوان والطلاءات الواقية. جودة صالون السيارات.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔍</div>
+
+            <h3>التشخيص</h3>
+
+            <p>تشخيص شامل بأحدث المعدات. تحديد المشاكل قبل تفاقمها.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🚙</div>
+
+            <h3>خدمة الكونسيرج 24/7</h3>
+
+            <p>نستقبل السيارة وننهي الإصلاح ونسلمها جاهزة. راحة كاملة لك.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section" id="faq">
+
+    <div class="section-header">
+
+        <div class="section-tag">Questions</div>
+
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+    </div>
+
+
+    <div class="grid-2" style="max-width: 900px;">
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>How does concierge pickup work?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Call or WhatsApp us. We'll pick up your vehicle from home, office, or anywhere. While we repair, you get a loaner car. Once done, we deliver it back to you. Free service across UAE.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>Are you insurance approved?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Yes. We're authorized for AXA, Allianz, ADIB, Emirates Insurance, and all major UAE insurers. Direct billing available. We handle all paperwork for you.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>What warranty do you provide?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">3-year warranty on all repairs and service work. Parts come with manufacturer warranties. We're ISO 9001 certified. All work is 100% guaranteed.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>How much does ceramic coating cost?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Ceramic coating typically costs 1,500-4,000 AED depending on vehicle size. PPF costs 3,000-8,000 AED. Both protect your paint. Get a free quote—call us.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>Do you work across all emirates?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Yes. We provide concierge service across Dubai, Sharjah, Ajman, Abu Dhabi, and all UAE emirates. Free pickup and delivery throughout.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>How often should I service my car?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Typically every 10,000-15,000 km or annually. In UAE's harsh climate, we recommend 8,000 km intervals. We'll create a personalized maintenance schedule for you.</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INSURANCE -->
+
+<section class="section insurance">
+
+    <div class="section-header">
+
+        <div class="section-tag">Partners</div>
+
+        <h2 class="section-title">Insurance Partners</h2>
+
+        <p class="section-desc">Authorized service center for all major UAE insurance companies. Direct billing, seamless claims processing.</p>
+
+    </div>
+
+
+    <div class="insurance-logos">
+
+        <div class="insurance-logo">AXA Insurance</div>
+
+        <div class="insurance-logo">Allianz</div>
+
+        <div class="insurance-logo">ADIB Insurance</div>
+
+        <div class="insurance-logo">Emirates Insurance</div>
+
+        <div class="insurance-logo">Aman Insurance</div>
+
+        <div class="insurance-logo">+ All Major Insurers</div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="section cta">
+
+    <h2>Ready to Service Your Vehicle?</h2>
+
+    <p>Get expert care and transparent pricing. Free consultation and quote.</p>
+
+    <a href="tel:+971522581990" class="btn-primary">📞 Call Us Today</a>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="section" id="contact">
+
+    <div class="section-header">
+
+        <div class="section-tag">Get In Touch</div>
+
+        <h2 class="section-title">Contact Us</h2>
+
+    </div>
+
+
+    <div class="contact-grid" style="max-width: 1200px; margin: 0 auto;">
+
+        <div>
+
+            <div class="contact-block">
+
+                <h3>📍 Service Center</h3>
+
+                <p>Service, Al Khuzaima St<br>Sharjah Industrial Area 7<br>Sharjah, UAE</p>
+
+                <a href="https://waze.com/ul/hthrrur3s9" class="waze-btn">📍 Open in Waze</a>
+
+            </div>
+
+            <div class="contact-block" style="margin-top: 32px;">
+
+                <h3>📞 24/7 Concierge</h3>
+
+                <p><a href="tel:+971522581990">+971 52 258 1990</a></p>
+
+            </div>
+
+            <div class="contact-block" style="margin-top: 32px;">
+
+                <h3>💬 WhatsApp</h3>
+
+                <p><a href="https://wa.me/971522581990">+971 52 258 1990</a></p>
+
+            </div>
+
+            <div class="contact-block" style="margin-top: 32px;">
+
+                <h3>🕐 Hours</h3>
+
+                <p>Mon-Thu: 8:00 AM - 6:00 PM<br>Fri-Sat: 10:00 AM - 6:00 PM<br>24/7 Emergency Support</p>
+
+            </div>
+
+        </div>
+
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+
+            <div class="form-group">
+
+                <label>Your Name *</label>
+
+                <input type="text" placeholder="Name" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Phone *</label>
+
+                <input type="tel" placeholder="+971 50 123 4567" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Car Brand & Model *</label>
+
+                <input type="text" placeholder="BMW, Mercedes, etc" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Service Needed *</label>
+
+                <input type="text" placeholder="Body repair, AC service, etc" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Message</label>
+
+                <textarea placeholder="Additional details..." required></textarea>
+
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%;">Send Inquiry</button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div class="footer-col">
+
+            <h4>ApexAutoMaint</h4>
+
+            <p>Professional auto repair and maintenance. ISO 9001 certified. Serving UAE with quality service.</p>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h4>Services</h4>
+
+            <a href="#services">Body Repair</a>
+
+            <a href="#services">AC Service</a>
+
+            <a href="#services">Ceramic Coating</a>
+
+            <a href="#services">Concierge Service</a>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h4>Support</h4>
+
+            <a href="#faq">FAQ</a>
+
+            <a href="#contact">Contact</a>
+
+            <a href="tel:+971522581990">Emergency Hotline</a>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h4>Service Areas</h4>
+
+            <p>Dubai • Sharjah • Ajman<br>Abu Dhabi • All Emirates<br>Free Concierge Pickup & Delivery</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>&copy; 2026 ApexAutoMaint. Professional Car Repair & Service. All Rights Reserved.</p>
+
+    </div>
+
+</footer>
+
+
+<!-- FLOATING -->
+
+<div class="floating">
+
+    <a href="tel:+971522581990" class="float-btn float-call">☎️</a>
+
+    <a href="https://wa.me/971522581990" class="float-btn float-whatsapp">💬</a>
+
+</div>
+
+
+<script>
+
+    function setLang(lang) {
+
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+
+        event.target.classList.add('active');
+
+       
+
+        document.querySelectorAll('[id*="EN"]').forEach(el => el.classList.add('hidden'));
+
+        document.querySelectorAll('[id*="RU"]').forEach(el => el.classList.add('hidden'));
+
+        document.querySelectorAll('[id*="AR"]').forEach(el => el.classList.add('hidden'));
+
+
+        if (lang === 'en') {
+
+            document.querySelectorAll('[id*="EN"]').forEach(el => el.classList.remove('hidden'));
+
+        } else if (lang === 'ru') {
+
+            document.querySelectorAll('[id*="RU"]').forEach(el => el.classList.remove('hidden'));
+
+        } else if (lang === 'ar') {
+
+            document.querySelectorAll('[id*="AR"]').forEach(el => el.classList.remove('hidden'));
+
+        }
+
+    }
+
+
+    function handleSubmit(e) {
+
+        e.preventDefault();
+
+        const inputs = e.target.querySelectorAll('input, textarea');
+
+        const msg = `📋 Service Inquiry\nName: ${inputs[0].value}\nPhone: ${inputs[1].value}\nCar: ${inputs[2].value}\nService: ${inputs[3].value}\nMessage: ${inputs[4].value}`;
+
+        window.location.href = `https://wa.me/971522581990?text=${encodeURIComponent(msg)}`;
+
+    }
+
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+
+        item.querySelector('.faq-q').addEventListener('click', () => {
+
+            item.classList.toggle('open');
+
+        });
+
+    });
+
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+
+        a.addEventListener('click', e => {
+
+            const href = a.getAttribute('href');
+
+            if (href !== '#') {
+
+                e.preventDefault();
+
+                document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+
+            }
+
+        });
+
+    });
+
+</script>
+
+```
+
+
+</body>
+
+</html>
+
+
+pt 72pt 72pt 72pt}.c2{height:11pt}.title{padding-top:0pt;color:#000000;font-size:26pt;padding-bottom:3pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:11pt;font-family:"Arial"}p{margin:0;color:#000000;font-size:11pt;font-family:"Arial"}h1{padding-top:20pt;color:#000000;font-size:20pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <meta name="description" content="ApexAutoMaint - Professional car repair service in UAE. Body repair, electrical work, mechanical service, ceramic coating, AC service, transmission repair. ISO 9001 certified. 24/7 concierge. Dubai & Sharjah.">
+
+    <meta name="keywords" content="car repair UAE, auto service Dubai Sharjah, body repair, electrical repair, ceramic coating, AC service, transmission repair, concierge service, insurance approved">
+
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="ApexAutoMaint - Professional Car Repair & Service UAE">
+
+    <meta property="og:description" content="Expert vehicle repair and maintenance. Body repair, electrical diagnostics, mechanical service, ceramic coating, AC service. ISO 9001 certified. 24/7 concierge pickup & delivery.">
+
+    <meta property="og:type" content="business.business">
+
+
+```
+
+<title>ApexAutoMaint - Professional Car Repair Service Dubai & Sharjah</title>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&family=Playfair+Display:wght@700;800;900&display=swap');
+
+
+    * {
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+    }
+
+
+    :root {
+
+        --dark: #0a0a0a;
+
+        --white: #ffffff;
+
+        --gold: #d4af37;
+
+        --gold-dark: #b8941f;
+
+        --gray: #1a1a1a;
+
+        --text-light: #666;
+
+        --light-bg: #f5f5f5;
+
+        --border: #e0e0e0;
+
+    }
+
+
+    html {
+
+        scroll-behavior: smooth;
+
+        -webkit-font-smoothing: antialiased;
+
+    }
+
+
+    body {
+
+        font-family: 'Poppins', sans-serif;
+
+        background: var(--white);
+
+        color: var(--gray);
+
+        line-height: 1.7;
+
+    }
+
+
+    /* BANNER */
+
+    .banner {
+
+        background: linear-gradient(90deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+        padding: 16px 24px;
+
+        text-align: center;
+
+        font-weight: 700;
+
+        font-size: 13px;
+
+        letter-spacing: 1.5px;
+
+        text-transform: uppercase;
+
+    }
+
+
+    /* LANGUAGE */
+
+    .lang-toggle {
+
+        position: fixed;
+
+        top: 24px;
+
+        right: 24px;
+
+        z-index: 1001;
+
+        display: flex;
+
+        gap: 8px;
+
+        background: var(--white);
+
+        border: 2px solid var(--gold);
+
+        border-radius: 10px;
+
+        padding: 12px;
+
+    }
+
+
+    .lang-btn {
+
+        padding: 8px 14px;
+
+        border: none;
+
+        background: transparent;
+
+        cursor: pointer;
+
+        font-weight: 700;
+
+        border-radius: 6px;
+
+        font-size: 11px;
+
+        letter-spacing: 1px;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .lang-btn.active {
+
+        background: var(--gold);
+
+        color: var(--dark);
+
+    }
+
+
+    /* HEADER */
+
+    header {
+
+        position: sticky;
+
+        top: 0;
+
+        background: var(--white);
+
+        border-bottom: 2px solid var(--border);
+
+        z-index: 1000;
+
+        padding: 20px 48px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+    }
+
+
+    .logo {
+
+        font-family: 'Playfair Display', serif;
+
+        font-size: 32px;
+
+        font-weight: 900;
+
+        color: var(--dark);
+
+    }
+
+
+    .logo-span {
+
+        color: var(--gold);
+
+    }
+
+
+    nav {
+
+        display: flex;
+
+        gap: 40px;
+
+        align-items: center;
+
+    }
+
+
+    nav a {
+
+        text-decoration: none;
+
+        color: var(--gray);
+
+        font-weight: 600;
+
+        font-size: 12px;
+
+        letter-spacing: 0.8px;
+
+        text-transform: uppercase;
+
+        position: relative;
+
+        transition: color 0.3s;
+
+    }
+
+
+    nav a::after {
+
+        content: '';
+
+        position: absolute;
+
+        bottom: -4px;
+
+        left: 0;
+
+        width: 0;
+
+        height: 2px;
+
+        background: var(--gold);
+
+        transition: width 0.3s;
+
+    }
+
+
+    nav a:hover::after {
+
+        width: 100%;
+
+    }
+
+
+    .btn-call {
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+        padding: 13px 28px;
+
+        border: none;
+
+        border-radius: 6px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        font-size: 11px;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .btn-call:hover {
+
+        transform: translateY(-2px);
+
+    }
+
+
+    /* HERO */
+
+    .hero {
+
+        background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+
+        color: var(--white);
+
+        padding: 120px 48px;
+
+        text-align: center;
+
+        position: relative;
+
+        overflow: hidden;
+
+    }
+
+
+    .hero::before {
+
+        content: '';
+
+        position: absolute;
+
+        top: -50%;
+
+        right: -20%;
+
+        width: 800px;
+
+        height: 800px;
+
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+
+    }
+
+
+    .hero-content {
+
+        position: relative;
+
+        z-index: 2;
+
+        max-width: 900px;
+
+        margin: 0 auto;
+
+    }
+
+
+    .hero-tag {
+
+        font-size: 12px;
+
+        color: var(--gold);
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+
+        font-weight: 700;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .hero h1 {
+
+        font-family: 'Playfair Display', serif;
+
+        font-size: 64px;
+
+        font-weight: 900;
+
+        line-height: 1.2;
+
+        margin-bottom: 28px;
+
+    }
+
+
+    .hero h1 .highlight {
+
+        color: var(--gold);
+
+    }
+
+
+    .hero p {
+
+        font-size: 18px;
+
+        color: #ccc;
+
+        margin-bottom: 40px;
+
+        line-height: 1.8;
+
+        max-width: 700px;
+
+        margin-left: auto;
+
+        margin-right: auto;
+
+    }
+
+
+    .hero-stats {
+
+        display: grid;
+
+        grid-template-columns: repeat(5, 1fr);
+
+        gap: 32px;
+
+        margin: 60px 0;
+
+    }
+
+
+    .stat-num {
+
+        font-size: 32px;
+
+        font-weight: 900;
+
+        color: var(--gold);
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .stat-label {
+
+        font-size: 12px;
+
+        color: #999;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1px;
+
+    }
+
+
+    .hero-btns {
+
+        display: flex;
+
+        gap: 24px;
+
+        justify-content: center;
+
+    }
+
+
+    .btn-primary {
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+        padding: 16px 40px;
+
+        border: none;
+
+        border-radius: 6px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        font-size: 12px;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        text-decoration: none;
+
+        display: inline-block;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .btn-primary:hover {
+
+        transform: translateY(-3px);
+
+    }
+
+
+    .btn-secondary {
+
+        background: transparent;
+
+        color: var(--white);
+
+        padding: 16px 40px;
+
+        border: 2px solid var(--gold);
+
+        border-radius: 6px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        font-size: 12px;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        text-decoration: none;
+
+        display: inline-block;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .btn-secondary:hover {
+
+        background: var(--gold);
+
+        color: var(--dark);
+
+    }
+
+
+    /* SECTIONS */
+
+    .section {
+
+        padding: 100px 48px;
+
+        background: var(--white);
+
+    }
+
+
+    .section:nth-child(odd) {
+
+        background: var(--light-bg);
+
+    }
+
+
+    .section-header {
+
+        text-align: center;
+
+        margin-bottom: 60px;
+
+    }
+
+
+    .section-tag {
+
+        font-size: 12px;
+
+        color: var(--gold);
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+
+        font-weight: 700;
+
+        margin-bottom: 16px;
+
+    }
+
+
+    .section-title {
+
+        font-family: 'Playfair Display', serif;
+
+        font-size: 48px;
+
+        font-weight: 900;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .section-desc {
+
+        font-size: 16px;
+
+        color: var(--text-light);
+
+        max-width: 650px;
+
+        margin: 0 auto;
+
+    }
+
+
+    /* GRID */
+
+    .grid-4 {
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 24px;
+
+    }
+
+
+    .grid-3 {
+
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 28px;
+
+    }
+
+
+    .grid-2 {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 32px;
+
+        max-width: 1200px;
+
+        margin: 0 auto;
+
+    }
+
+
+    /* CARDS */
+
+    .card {
+
+        padding: 32px;
+
+        border: 2px solid var(--border);
+
+        border-radius: 8px;
+
+        transition: all 0.3s;
+
+        background: var(--white);
+
+    }
+
+
+    .card:hover {
+
+        border-color: var(--gold);
+
+        transform: translateY(-4px);
+
+        box-shadow: 0 12px 32px rgba(212, 175, 55, 0.15);
+
+    }
+
+
+    .card-icon {
+
+        font-size: 42px;
+
+        margin-bottom: 16px;
+
+    }
+
+
+    .card h3 {
+
+        font-size: 18px;
+
+        font-weight: 700;
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .card p {
+
+        color: var(--text-light);
+
+        font-size: 14px;
+
+        line-height: 1.8;
+
+    }
+
+
+    /* FAQ */
+
+    .faq-item {
+
+        border-bottom: 2px solid var(--border);
+
+        padding: 24px 0;
+
+        cursor: pointer;
+
+    }
+
+
+    .faq-q {
+
+        font-weight: 700;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        font-size: 15px;
+
+    }
+
+
+    .faq-toggle {
+
+        color: var(--gold);
+
+        font-size: 20px;
+
+        transition: transform 0.3s;
+
+    }
+
+
+    .faq-item.open .faq-toggle {
+
+        transform: rotate(180deg);
+
+    }
+
+
+    .faq-a {
+
+        font-size: 14px;
+
+        color: var(--text-light);
+
+        margin-top: 16px;
+
+        display: none;
+
+        line-height: 1.8;
+
+    }
+
+
+    .faq-item.open .faq-a {
+
+        display: block;
+
+    }
+
+
+    /* INSURANCE */
+
+    .insurance {
+
+        background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+
+        color: var(--white);
+
+        text-align: center;
+
+    }
+
+
+    .insurance-logos {
+
+        display: grid;
+
+        grid-template-columns: repeat(6, 1fr);
+
+        gap: 16px;
+
+        margin-top: 40px;
+
+    }
+
+
+    .insurance-logo {
+
+        background: rgba(255, 255, 255, 0.08);
+
+        border: 2px solid var(--gold);
+
+        padding: 18px;
+
+        border-radius: 6px;
+
+        font-weight: 700;
+
+        font-size: 12px;
+
+    }
+
+
+    /* CTA */
+
+    .cta {
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+    }
+
+
+    .cta h2 {
+
+        font-family: 'Playfair Display', serif;
+
+        font-size: 44px;
+
+        font-weight: 900;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .cta p {
+
+        font-size: 16px;
+
+        max-width: 550px;
+
+        margin: 0 auto 32px;
+
+    }
+
+
+    /* CONTACT */
+
+    .contact-grid {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 48px;
+
+    }
+
+
+    .contact-block {
+
+        border-left: 3px solid var(--gold);
+
+        padding-left: 24px;
+
+    }
+
+
+    .contact-block h3 {
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1.5px;
+
+        color: var(--gold);
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .contact-block p, .contact-block a {
+
+        font-size: 14px;
+
+        color: var(--text-light);
+
+        line-height: 1.8;
+
+    }
+
+
+    .contact-block a {
+
+        color: var(--gold);
+
+        text-decoration: none;
+
+        font-weight: 700;
+
+    }
+
+
+    .waze-btn {
+
+        display: inline-block;
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+        padding: 10px 18px;
+
+        border-radius: 4px;
+
+        text-decoration: none;
+
+        font-weight: 700;
+
+        font-size: 10px;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        margin-top: 12px;
+
+        transition: all 0.3s;
+
+    }
+
+
+    .waze-btn:hover {
+
+        transform: translateY(-2px);
+
+    }
+
+
+    .contact-form {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 16px;
+
+    }
+
+
+    .form-group {
+
+        display: flex;
+
+        flex-direction: column;
+
+    }
+
+
+    .form-group label {
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1px;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .form-group input,
+
+    .form-group textarea {
+
+        padding: 12px 14px;
+
+        border: 2px solid var(--border);
+
+        border-radius: 4px;
+
+        font-family: inherit;
+
+        font-size: 14px;
+
+        transition: border-color 0.3s;
+
+        background: var(--light-bg);
+
+    }
+
+
+    .form-group input:focus,
+
+    .form-group textarea:focus {
+
+        outline: none;
+
+        border-color: var(--gold);
+
+        background: var(--white);
+
+    }
+
+
+    .form-group textarea {
+
+        min-height: 120px;
+
+        resize: vertical;
+
+    }
+
+
+    /* FOOTER */
+
+    footer {
+
+        background: var(--dark);
+
+        color: var(--white);
+
+        padding: 50px 48px 30px;
+
+        border-top: 2px solid var(--gold);
+
+    }
+
+
+    .footer-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 40px;
+
+        max-width: 1200px;
+
+        margin: 0 auto 30px;
+
+    }
+
+
+    .footer-col h4 {
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1.5px;
+
+        color: var(--gold);
+
+        margin-bottom: 14px;
+
+    }
+
+
+    .footer-col a,
+
+    .footer-col p {
+
+        font-size: 13px;
+
+        color: #999;
+
+        line-height: 1.8;
+
+        text-decoration: none;
+
+    }
+
+
+    .footer-col a:hover {
+
+        color: var(--gold);
+
+    }
+
+
+    .footer-bottom {
+
+        text-align: center;
+
+        padding-top: 20px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        font-size: 12px;
+
+        color: #666;
+
+    }
+
+
+    /* FLOATING */
+
+    .floating {
+
+        position: fixed;
+
+        bottom: 32px;
+
+        right: 32px;
+
+        display: flex;
+
+        gap: 12px;
+
+        flex-direction: column;
+
+        z-index: 999;
+
+    }
+
+
+    .float-btn {
+
+        width: 60px;
+
+        height: 60px;
+
+        border-radius: 50%;
+
+        border: none;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        cursor: pointer;
+
+        font-size: 24px;
+
+        transition: all 0.3s;
+
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+
+        text-decoration: none;
+
+    }
+
+
+    .float-call {
+
+        background: linear-gradient(135deg, var(--gold) 0%, #e8b923 100%);
+
+        color: var(--dark);
+
+    }
+
+
+    .float-call:hover {
+
+        transform: scale(1.12);
+
+    }
+
+
+    .float-whatsapp {
+
+        background: #25d366;
+
+        color: var(--white);
+
+    }
+
+
+    .float-whatsapp:hover {
+
+        transform: scale(1.12);
+
+    }
+
+
+    .hidden { display: none; }
+
+
+    @media (max-width: 1024px) {
+
+        .grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+        .grid-3 { grid-template-columns: repeat(2, 1fr); }
+
+        .hero-stats { grid-template-columns: repeat(2, 1fr); }
+
+        .insurance-logos { grid-template-columns: repeat(3, 1fr); }
+
+        nav { gap: 20px; }
+
+        nav a { font-size: 11px; }
+
+    }
+
+
+    @media (max-width: 640px) {
+
+        header { flex-direction: column; gap: 16px; padding: 12px 16px; }
+
+        nav { display: none; }
+
+        .logo { font-size: 22px; }
+
+        .hero { padding: 60px 16px; }
+
+        .hero h1 { font-size: 36px; }
+
+        .hero-btns { flex-direction: column; }
+
+        .section { padding: 60px 16px; }
+
+        .section-title { font-size: 32px; }
+
+        .grid-4, .grid-3 { grid-template-columns: 1fr; }
+
+        .grid-2 { grid-template-columns: 1fr; }
+
+        .contact-grid { grid-template-columns: 1fr; }
+
+        .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+
+        .insurance-logos { grid-template-columns: repeat(2, 1fr); }
+
+        .banner { font-size: 11px; padding: 12px; }
+
+    }
+
+</style>
+
+```
+
+
+</head>
+
+<body>
+
+    <!-- BANNER -->
+
+    <div class="banner">
+
+        ⭐ EVERY 5TH ENGINE OIL CHANGE IS FREE | 24/7 CONCIERGE | ISO 9001 CERTIFIED ⭐
+
+    </div>
+
+
+```
+
+<!-- LANGUAGE -->
+
+<div class="lang-toggle">
+
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+
+    <button class="lang-btn" onclick="setLang('ru')">РУ</button>
+
+    <button class="lang-btn" onclick="setLang('ar')">AR</button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo"><span class="logo-span">Apex</span>AutoMaint</div>
+
+    <nav>
+
+        <a href="#services">Services</a>
+
+        <a href="#faq">FAQ</a>
+
+        <a href="#contact">Contact</a>
+
+        <a href="tel:+971522581990" class="btn-call">📞 +971 52 258 1990</a>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO (EN) -->
+
+<section class="hero" id="heroEN">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">Professional Auto Repair & Maintenance</div>
+
+        <h1>Expert Service for Your <span class="highlight">Vehicle</span></h1>
+
+        <p>Complete auto repair and maintenance services. Body repair, electrical work, mechanical service, ceramic coating, AC service, and more. Available 24/7 across UAE.</p>
+
+       
+
+        <div class="hero-stats">
+
+            <div>
+
+                <div class="stat-num">500+</div>
+
+                <div class="stat-label">Vehicles Serviced</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">4.9★</div>
+
+                <div class="stat-label">Customer Rating</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">ISO 9001</div>
+
+                <div class="stat-label">Certified</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">100%</div>
+
+                <div class="stat-label">Warranty</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">24/7</div>
+
+                <div class="stat-label">Support</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-btns">
+
+            <a href="https://wa.me/971522581990" class="btn-primary">💬 WhatsApp Us</a>
+
+            <a href="tel:+971522581990" class="btn-secondary">📞 Call Now</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HERO (RU) -->
+
+<section class="hero hidden" id="heroRU">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">Профессиональный ремонт и обслуживание авто</div>
+
+        <h1>Экспертный сервис для вашего <span class="highlight">автомобиля</span></h1>
+
+        <p>Полный спектр услуг ремонта и обслуживания. Ремонт кузова, электрика, механика, керамическое покрытие, кондиционер и многое другое. Доступно 24/7 по всей ОАЭ.</p>
+
+       
+
+        <div class="hero-stats">
+
+            <div>
+
+                <div class="stat-num">500+</div>
+
+                <div class="stat-label">Автомобилей отремонтировано</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">4.9★</div>
+
+                <div class="stat-label">Рейтинг клиентов</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">ISO 9001</div>
+
+                <div class="stat-label">Сертифицировано</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">100%</div>
+
+                <div class="stat-label">Гарантия</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">24/7</div>
+
+                <div class="stat-label">Поддержка</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-btns">
+
+            <a href="https://wa.me/971522581990" class="btn-primary">💬 Напишите в WhatsApp</a>
+
+            <a href="tel:+971522581990" class="btn-secondary">📞 Позвонить</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HERO (AR) -->
+
+<section class="hero hidden" id="heroAR" dir="rtl">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">خدمة إصلاح وصيانة السيارات الاحترافية</div>
+
+        <h1>خدمة خبراء <span class="highlight">لسيارتك</span></h1>
+
+        <p>نطاق كامل من خدمات الإصلاح والصيانة. إصلاح الهيكل والكهرباء والميكانيكا وطلاء السيراميك وخدمة التكييف وغير ذلك. متاح 24/7 في جميع أنحاء الإمارات.</p>
+
+       
+
+        <div class="hero-stats">
+
+            <div>
+
+                <div class="stat-num">500+</div>
+
+                <div class="stat-label">السيارات المرممة</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">4.9★</div>
+
+                <div class="stat-label">تقييم العملاء</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">ISO 9001</div>
+
+                <div class="stat-label">معتمد</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">100%</div>
+
+                <div class="stat-label">الضمان</div>
+
+            </div>
+
+            <div>
+
+                <div class="stat-num">24/7</div>
+
+                <div class="stat-label">الدعم</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-btns">
+
+            <a href="https://wa.me/971522581990" class="btn-primary">💬 راسلنا على واتس</a>
+
+            <a href="tel:+971522581990" class="btn-secondary">📞 اتصل بنا</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES (EN) -->
+
+<section class="section" id="servicesEN" id="services">
+
+    <div class="section-header">
+
+        <div class="section-tag">What We Offer</div>
+
+        <h2 class="section-title">Our Services</h2>
+
+        <p class="section-desc">Complete solutions for all your vehicle repair and maintenance needs. Professional work with guaranteed results.</p>
+
+    </div>
+
+
+    <div class="grid-4">
+
+        <div class="card">
+
+            <div class="card-icon">🚗</div>
+
+            <h3>Body Repair</h3>
+
+            <p>Expert dent removal, panel replacement, and frame repair. Restore your car to original condition.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">⚡</div>
+
+            <h3>Electrical Diagnostics</h3>
+
+            <p>Complete electrical system diagnosis. Battery, alternator, wiring, sensors repairs.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔧</div>
+
+            <h3>Mechanical Repair</h3>
+
+            <p>Engine, transmission, suspension work. All mechanical repairs by certified technicians.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🛡️</div>
+
+            <h3>Ceramic Coating & PPF</h3>
+
+            <p>Paint protection film and ceramic coating. Protect your car from UAE climate and damage.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">❄️</div>
+
+            <h3>AC Service & Repair</h3>
+
+            <p>Complete air conditioning service and repair. Essential for UAE's extreme heat conditions.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🎨</div>
+
+            <h3>Paint & Detailing</h3>
+
+            <p>Professional painting, color matching, and protective coatings. Showroom-quality finish.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔍</div>
+
+            <h3>Diagnostics</h3>
+
+            <p>Complete vehicle diagnostics using latest equipment. Identify issues before they worsen.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🚙</div>
+
+            <h3>24/7 Concierge Service</h3>
+
+            <p>We pick up your vehicle, complete repair, deliver it back. No hassle, total convenience.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES (RU) -->
+
+<section class="section hidden" id="servicesRU">
+
+    <div class="section-header">
+
+        <div class="section-tag">Наши услуги</div>
+
+        <h2 class="section-title">Полный спектр обслуживания</h2>
+
+        <p class="section-desc">Полное решение для всех потребностей ремонта и обслуживания вашего автомобиля. Профессиональная работа с гарантированным результатом.</p>
+
+    </div>
+
+
+    <div class="grid-4">
+
+        <div class="card">
+
+            <div class="card-icon">🚗</div>
+
+            <h3>Ремонт кузова</h3>
+
+            <p>Удаление вмятин, замена панелей, ремонт рамы. Восстанавливаем в идеальное состояние.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">⚡</div>
+
+            <h3>Электрическая диагностика</h3>
+
+            <p>Полная диагностика электрических систем. Батарея, генератор, проводка, датчики.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔧</div>
+
+            <h3>Механический ремонт</h3>
+
+            <p>Двигатель, коробка передач, подвеска. Все работы выполняют сертифицированные техники.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🛡️</div>
+
+            <h3>Керамическое покрытие & PPF</h3>
+
+            <p>Защита краски от повреждений и коррозии. Защита от климата ОАЭ и физических повреждений.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">❄️</div>
+
+            <h3>Сервис кондиционера</h3>
+
+            <p>Полное обслуживание и ремонт кондиционера. Необходимо для экстремальной жары ОАЭ.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🎨</div>
+
+            <h3>Покраска и детейлинг</h3>
+
+            <p>Профессиональная покраска, подбор цвета, защитные покрытия. Качество автосалона.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔍</div>
+
+            <h3>Диагностика</h3>
+
+            <p>Полная диагностика современным оборудованием. Выявляем проблемы до их усугубления.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🚙</div>
+
+            <h3>Консьерж сервис 24/7</h3>
+
+            <p>Забираем машину, выполняем ремонт, доставляем готовой. Полное удобство для вас.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES (AR) -->
+
+<section class="section hidden" id="servicesAR" dir="rtl">
+
+    <div class="section-header">
+
+        <div class="section-tag">خدماتنا</div>
+
+        <h2 class="section-title">نطاق كامل من الخدمات</h2>
+
+        <p class="section-desc">حل شامل لجميع احتياجات إصلاح وصيانة سيارتك. عمل احترافي مع نتائج مضمونة.</p>
+
+    </div>
+
+
+    <div class="grid-4">
+
+        <div class="card">
+
+            <div class="card-icon">🚗</div>
+
+            <h3>إصلاح الهيكل</h3>
+
+            <p>إزالة الخدوش، استبدال الألواح، إصلاح الإطار. نعيد السيارة لحالتها الأصلية.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">⚡</div>
+
+            <h3>التشخيص الكهربائي</h3>
+
+            <p>تشخيص شامل للأنظمة الكهربائية. البطارية والمولد والأسلاك والمستشعرات.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔧</div>
+
+            <h3>الإصلاح الميكانيكي</h3>
+
+            <p>المحرك والناقل والتعليق. جميع الأعمال الميكانيكية بفنيين معتمدين.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🛡️</div>
+
+            <h3>طلاء السيراميك و PPF</h3>
+
+            <p>حماية الطلاء من الأضرار والصدأ. حماية من مناخ الإمارات والأضرار الفيزيائية.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">❄️</div>
+
+            <h3>خدمة التكييف</h3>
+
+            <p>صيانة وإصلاح التكييف الكامل. ضروري لحرارة الإمارات الشديدة.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🎨</div>
+
+            <h3>الطلاء والتفاصيل</h3>
+
+            <p>طلاء احترافي ومطابقة الألوان والطلاءات الواقية. جودة صالون السيارات.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔍</div>
+
+            <h3>التشخيص</h3>
+
+            <p>تشخيص شامل بأحدث المعدات. تحديد المشاكل قبل تفاقمها.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🚙</div>
+
+            <h3>خدمة الكونسيرج 24/7</h3>
+
+            <p>نستقبل السيارة وننهي الإصلاح ونسلمها جاهزة. راحة كاملة لك.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section" id="faq">
+
+    <div class="section-header">
+
+        <div class="section-tag">Questions</div>
+
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+    </div>
+
+
+    <div class="grid-2" style="max-width: 900px;">
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>How does concierge pickup work?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Call or WhatsApp us. We'll pick up your vehicle from home, office, or anywhere. While we repair, you get a loaner car. Once done, we deliver it back to you. Free service across UAE.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>Are you insurance approved?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Yes. We're authorized for AXA, Allianz, ADIB, Emirates Insurance, and all major UAE insurers. Direct billing available. We handle all paperwork for you.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>What warranty do you provide?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">3-year warranty on all repairs and service work. Parts come with manufacturer warranties. We're ISO 9001 certified. All work is 100% guaranteed.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>How much does ceramic coating cost?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Ceramic coating typically costs 1,500-4,000 AED depending on vehicle size. PPF costs 3,000-8,000 AED. Both protect your paint. Get a free quote—call us.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>Do you work across all emirates?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Yes. We provide concierge service across Dubai, Sharjah, Ajman, Abu Dhabi, and all UAE emirates. Free pickup and delivery throughout.</div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <div class="faq-q">
+
+                <span>How often should I service my car?</span>
+
+                <span class="faq-toggle">+</span>
+
+            </div>
+
+            <div class="faq-a">Typically every 10,000-15,000 km or annually. In UAE's harsh climate, we recommend 8,000 km intervals. We'll create a personalized maintenance schedule for you.</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INSURANCE -->
+
+<section class="section insurance">
+
+    <div class="section-header">
+
+        <div class="section-tag">Partners</div>
+
+        <h2 class="section-title">Insurance Partners</h2>
+
+        <p class="section-desc">Authorized service center for all major UAE insurance companies. Direct billing, seamless claims processing.</p>
+
+    </div>
+
+
+    <div class="insurance-logos">
+
+        <div class="insurance-logo">AXA Insurance</div>
+
+        <div class="insurance-logo">Allianz</div>
+
+        <div class="insurance-logo">ADIB Insurance</div>
+
+        <div class="insurance-logo">Emirates Insurance</div>
+
+        <div class="insurance-logo">Aman Insurance</div>
+
+        <div class="insurance-logo">+ All Major Insurers</div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="section cta">
+
+    <h2>Ready to Service Your Vehicle?</h2>
+
+    <p>Get expert care and transparent pricing. Free consultation and quote.</p>
+
+    <a href="tel:+971522581990" class="btn-primary">📞 Call Us Today</a>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="section" id="contact">
+
+    <div class="section-header">
+
+        <div class="section-tag">Get In Touch</div>
+
+        <h2 class="section-title">Contact Us</h2>
+
+    </div>
+
+
+    <div class="contact-grid" style="max-width: 1200px; margin: 0 auto;">
+
+        <div>
+
+            <div class="contact-block">
+
+                <h3>📍 Service Center</h3>
+
+                <p>Service, Al Khuzaima St<br>Sharjah Industrial Area 7<br>Sharjah, UAE</p>
+
+                <a href="https://waze.com/ul/hthrrur3s9" class="waze-btn">📍 Open in Waze</a>
+
+            </div>
+
+            <div class="contact-block" style="margin-top: 32px;">
+
+                <h3>📞 24/7 Concierge</h3>
+
+                <p><a href="tel:+971522581990">+971 52 258 1990</a></p>
+
+            </div>
+
+            <div class="contact-block" style="margin-top: 32px;">
+
+                <h3>💬 WhatsApp</h3>
+
+                <p><a href="https://wa.me/971522581990">+971 52 258 1990</a></p>
+
+            </div>
+
+            <div class="contact-block" style="margin-top: 32px;">
+
+                <h3>🕐 Hours</h3>
+
+                <p>Mon-Thu: 8:00 AM - 6:00 PM<br>Fri-Sat: 10:00 AM - 6:00 PM<br>24/7 Emergency Support</p>
+
+            </div>
+
+        </div>
+
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+
+            <div class="form-group">
+
+                <label>Your Name *</label>
+
+                <input type="text" placeholder="Name" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Phone *</label>
+
+                <input type="tel" placeholder="+971 50 123 4567" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Car Brand & Model *</label>
+
+                <input type="text" placeholder="BMW, Mercedes, etc" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Service Needed *</label>
+
+                <input type="text" placeholder="Body repair, AC service, etc" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Message</label>
+
+                <textarea placeholder="Additional details..." required></textarea>
+
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%;">Send Inquiry</button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div class="footer-col">
+
+            <h4>ApexAutoMaint</h4>
+
+            <p>Professional auto repair and maintenance. ISO 9001 certified. Serving UAE with quality service.</p>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h4>Services</h4>
+
+            <a href="#services">Body Repair</a>
+
+            <a href="#services">AC Service</a>
+
+            <a href="#services">Ceramic Coating</a>
+
+            <a href="#services">Concierge Service</a>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h4>Support</h4>
+
+            <a href="#faq">FAQ</a>
+
+            <a href="#contact">Contact</a>
+
+            <a href="tel:+971522581990">Emergency Hotline</a>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h4>Service Areas</h4>
+
+            <p>Dubai • Sharjah • Ajman<br>Abu Dhabi • All Emirates<br>Free Concierge Pickup & Delivery</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>&copy; 2026 ApexAutoMaint. Professional Car Repair & Service. All Rights Reserved.</p>
+
+    </div>
+
+</footer>
+
+
+<!-- FLOATING -->
+
+<div class="floating">
+
+    <a href="tel:+971522581990" class="float-btn float-call">☎️</a>
+
+    <a href="https://wa.me/971522581990" class="float-btn float-whatsapp">💬</a>
+
+</div>
+
+
+<script>
+
+    function setLang(lang) {
+
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+
+        event.target.classList.add('active');
+
+       
+
+        document.querySelectorAll('[id*="EN"]').forEach(el => el.classList.add('hidden'));
+
+        document.querySelectorAll('[id*="RU"]').forEach(el => el.classList.add('hidden'));
+
+        document.querySelectorAll('[id*="AR"]').forEach(el => el.classList.add('hidden'));
+
+
+        if (lang === 'en') {
+
+            document.querySelectorAll('[id*="EN"]').forEach(el => el.classList.remove('hidden'));
+
+        } else if (lang === 'ru') {
+
+            document.querySelectorAll('[id*="RU"]').forEach(el => el.classList.remove('hidden'));
+
+        } else if (lang === 'ar') {
+
+            document.querySelectorAll('[id*="AR"]').forEach(el => el.classList.remove('hidden'));
+
+        }
+
+    }
+
+
+    function handleSubmit(e) {
+
+        e.preventDefault();
+
+        const inputs = e.target.querySelectorAll('input, textarea');
+
+        const msg = `📋 Service Inquiry\nName: ${inputs[0].value}\nPhone: ${inputs[1].value}\nCar: ${inputs[2].value}\nService: ${inputs[3].value}\nMessage: ${inputs[4].value}`;
+
+        window.location.href = `https://wa.me/971522581990?text=${encodeURIComponent(msg)}`;
+
+    }
+
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+
+        item.querySelector('.faq-q').addEventListener('click', () => {
+
+            item.classList.toggle('open');
+
+        });
+
+    });
+
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+
+        a.addEventListener('click', e => {
+
+            const href = a.getAttribute('href');
+
+            if (href !== '#') {
+
+                e.preventDefault();
+
+                document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+
+            }
+
+        });
+
+    });
+
+</script>
+
+```
+
+
+</body>
+
+</html>
+
