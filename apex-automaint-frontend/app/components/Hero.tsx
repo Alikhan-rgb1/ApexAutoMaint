@@ -3,11 +3,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, ShieldCheck, Clock, Award } from 'lucide-react';
 
-const Hero = () => {
+interface HeroProps {
+  onBookClick?: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
   return (
     <section className="relative h-screen min-h-[800px] flex items-center bg-dark text-white overflow-hidden">
       {/* Background with Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark/95 to-dark/80 z-0"></div>
+      <div 
+        className="absolute inset-0 bg-cover bg-center z-0" 
+        style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop)' }}
+      ></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/95 to-dark/40 z-0"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent z-0"></div>
       
       {/* Abstract Shapes/Glow */}
@@ -46,13 +54,13 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
-              <a 
-                href="#contact" 
+              <button 
+                onClick={onBookClick}
                 className="px-8 py-4 bg-gold text-dark font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors duration-300 flex items-center justify-center gap-2 group"
               >
                 Book Service
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </a>
+              </button>
               <a 
                 href="#services" 
                 className="px-8 py-4 bg-transparent border border-white/20 text-white font-bold uppercase tracking-widest text-xs hover:border-gold hover:text-gold transition-colors duration-300 flex items-center justify-center"
@@ -87,33 +95,33 @@ const Hero = () => {
           >
             <div className="relative z-10 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
               <div className="grid gap-6">
-                <div className="bg-dark/50 p-6 rounded-xl border border-white/5 flex items-start gap-4">
+                <div className="bg-[#0a0a0a] backdrop-blur-md p-6 rounded-xl border border-white/20 flex items-start gap-4">
                   <div className="p-3 bg-gold/10 rounded-lg text-gold">
                     <ShieldCheck size={24} />
                   </div>
                   <div>
                     <h3 className="text-white font-bold mb-1">ISO 9001 Certified</h3>
-                    <p className="text-sm text-gray-400">International quality standards guaranteed.</p>
+                    <p className="text-sm text-white">International quality standards guaranteed.</p>
                   </div>
                 </div>
                 
-                <div className="bg-dark/50 p-6 rounded-xl border border-white/5 flex items-start gap-4">
+                <div className="bg-[#0a0a0a] backdrop-blur-md p-6 rounded-xl border border-white/20 flex items-start gap-4">
                   <div className="p-3 bg-gold/10 rounded-lg text-gold">
                     <Clock size={24} />
                   </div>
                   <div>
                     <h3 className="text-white font-bold mb-1">Fast Turnaround</h3>
-                    <p className="text-sm text-gray-400">Same-day service for minor repairs.</p>
+                    <p className="text-sm text-white">Same-day service for minor repairs.</p>
                   </div>
                 </div>
 
-                <div className="bg-dark/50 p-6 rounded-xl border border-white/5 flex items-start gap-4">
+                <div className="bg-[#0a0a0a] backdrop-blur-md p-6 rounded-xl border border-white/20 flex items-start gap-4">
                   <div className="p-3 bg-gold/10 rounded-lg text-gold">
                     <Award size={24} />
                   </div>
                   <div>
                     <h3 className="text-white font-bold mb-1">Expert Technicians</h3>
-                    <p className="text-sm text-gray-400">Certified professionals for all car makes.</p>
+                    <p className="text-sm text-white">Certified professionals for all car makes.</p>
                   </div>
                 </div>
               </div>

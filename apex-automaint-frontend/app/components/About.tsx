@@ -10,7 +10,11 @@ const features = [
   "Transparent Pricing Policy"
 ];
 
-const About = () => {
+interface AboutProps {
+  onBookClick?: () => void;
+}
+
+const About: React.FC<AboutProps> = ({ onBookClick }) => {
   return (
     <section id="about" className="py-24 bg-white overflow-hidden">
       <div className="container">
@@ -23,24 +27,30 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative z-10 bg-dark rounded-2xl p-1 overflow-hidden">
-              <div className="bg-gradient-to-br from-gray-800 to-black p-8 md:p-12 rounded-xl text-center">
-                <div className="w-24 h-24 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Shield size={48} className="text-gold" />
+            <div className="relative z-10 bg-dark rounded-2xl p-1 overflow-hidden h-full min-h-[500px] flex flex-col justify-end">
+              <div 
+                className="absolute inset-0 z-0 bg-cover bg-center"
+                style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2072&auto=format&fit=crop)' }}
+              ></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent z-0"></div>
+              
+              <div className="relative z-10 p-8 md:p-10 text-center">
+                <div className="inline-flex items-center justify-center p-4 bg-gold/20 backdrop-blur-md rounded-full mb-6 border border-gold/30">
+                  <Shield size={32} className="text-gold" />
                 </div>
-                <h3 className="text-3xl font-serif font-bold text-white mb-2">ISO 9001</h3>
-                <p className="text-gray-400 tracking-widest uppercase text-sm mb-8">Certified Quality</p>
+                <h3 className="text-3xl font-serif font-bold text-white mb-2">ISO 9001:2015</h3>
+                <p className="text-gold tracking-widest uppercase text-sm mb-8 font-bold">Certified Quality</p>
                 
                 <div className="grid grid-cols-2 gap-4 text-left">
-                  <div className="bg-white/5 p-4 rounded-lg">
+                  <div className="bg-[#1a1a1a]/90 backdrop-blur-md p-4 rounded-lg border border-white/20">
                     <Star className="text-gold mb-2" size={20} />
                     <div className="text-white font-bold text-lg">4.9/5</div>
-                    <div className="text-xs text-gray-500">Customer Rating</div>
+                    <div className="text-xs text-white">Customer Rating</div>
                   </div>
-                  <div className="bg-white/5 p-4 rounded-lg">
+                  <div className="bg-[#1a1a1a]/90 backdrop-blur-md p-4 rounded-lg border border-white/20">
                     <Users className="text-gold mb-2" size={20} />
                     <div className="text-white font-bold text-lg">10k+</div>
-                    <div className="text-xs text-gray-500">Served Clients</div>
+                    <div className="text-xs text-white">Served Clients</div>
                   </div>
                 </div>
               </div>
@@ -78,12 +88,12 @@ const About = () => {
               ))}
             </ul>
 
-            <a 
-              href="#contact" 
+            <button 
+              onClick={onBookClick}
               className="inline-flex items-center justify-center px-8 py-4 bg-dark text-white font-bold uppercase tracking-widest text-xs hover:bg-gold hover:text-dark transition-all duration-300 rounded-sm"
             >
               Get a Free Quote
-            </a>
+            </button>
           </motion.div>
         </div>
       </div>

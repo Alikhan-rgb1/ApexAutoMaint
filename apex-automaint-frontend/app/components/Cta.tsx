@@ -3,9 +3,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Calendar } from 'lucide-react';
 
-const Cta = () => {
+interface CtaProps {
+  onBookClick?: () => void;
+}
+
+const Cta: React.FC<CtaProps> = ({ onBookClick }) => {
   return (
     <section className="py-24 bg-gold relative overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay"
+        style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1983&auto=format&fit=crop)' }}
+      ></div>
       <div className="absolute inset-0 bg-dark/5 pattern-grid-lg opacity-20"></div>
       
       <div className="container relative z-10">
@@ -43,13 +51,13 @@ const Cta = () => {
               <Phone size={16} />
               Call Us Now
             </a>
-            <a 
-              href="#contact" 
+            <button 
+              onClick={onBookClick}
               className="px-8 py-4 bg-transparent border-2 border-dark text-dark font-bold uppercase tracking-widest text-xs hover:bg-dark hover:text-white transition-all duration-300 flex items-center gap-2"
             >
               <Calendar size={16} />
               Book Appointment
-            </a>
+            </button>
           </motion.div>
         </div>
       </div>

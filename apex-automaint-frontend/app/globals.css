@@ -39,5 +39,5 @@ body {
 /* Typography Defaults */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  color: var(--color-dark);
+  /* color: var(--color-dark);  <-- УБИРАЕМ ЭТУ СТРОКУ, ОНА ПЕРЕБИВАЛА ВСЕ */
 }

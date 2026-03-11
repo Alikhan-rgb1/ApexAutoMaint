@@ -4,7 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
 import Link from 'next/link';
 
-const Header = () => {
+interface HeaderProps {
+  onBookClick?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -73,7 +77,9 @@ const Header = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
-            <button className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${
+            <button 
+              onClick={onBookClick}
+              className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${
               isScrolled 
                 ? 'border-dark text-dark hover:bg-dark hover:text-white' 
                 : 'border-gold text-gold hover:bg-gold hover:text-dark'
@@ -111,7 +117,12 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              <button className="mt-4 px-8 py-3 bg-gold text-dark font-bold uppercase tracking-widest text-sm hover:bg-gold-hover transition-colors">
+              <button 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  onBookClick?.();
+                }}
+                className="mt-4 px-8 py-3 bg-gold text-dark font-bold uppercase tracking-widest text-sm hover:bg-gold-hover transition-colors">
                 Book Appointment
               </button>
               
