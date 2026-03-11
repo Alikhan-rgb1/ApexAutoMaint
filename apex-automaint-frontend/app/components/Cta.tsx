@@ -3,11 +3,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Calendar } from 'lucide-react';
 
+import { useLanguage } from '../context/LanguageContext';
+
 interface CtaProps {
   onBookClick?: () => void;
 }
 
 const Cta: React.FC<CtaProps> = ({ onBookClick }) => {
+  const { t } = useLanguage();
   return (
     <section className="py-24 bg-gold relative overflow-hidden">
       <div 
@@ -24,7 +27,7 @@ const Cta: React.FC<CtaProps> = ({ onBookClick }) => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-serif font-bold text-dark mb-6"
           >
-            Ready to Experience the Apex Difference?
+            {t.cta.title}
           </motion.h2>
           
           <motion.p 
@@ -34,7 +37,7 @@ const Cta: React.FC<CtaProps> = ({ onBookClick }) => {
             transition={{ delay: 0.1 }}
             className="text-dark/80 text-lg mb-10 max-w-2xl mx-auto"
           >
-            Contact us today for a free consultation and let our experts take care of your car with the precision it deserves.
+            {t.cta.desc}
           </motion.p>
           
           <motion.div 
@@ -49,14 +52,14 @@ const Cta: React.FC<CtaProps> = ({ onBookClick }) => {
               className="px-8 py-4 bg-dark text-white font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-dark transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               <Phone size={16} />
-              Call Us Now
+              {t.cta.callBtn}
             </a>
             <button 
               onClick={onBookClick}
               className="px-8 py-4 bg-transparent border-2 border-dark text-dark font-bold uppercase tracking-widest text-xs hover:bg-dark hover:text-white transition-all duration-300 flex items-center gap-2"
             >
               <Calendar size={16} />
-              Book Appointment
+              {t.cta.bookBtn}
             </button>
           </motion.div>
         </div>

@@ -3,19 +3,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, Navigation } from 'lucide-react';
 
+import { useLanguage } from '../context/LanguageContext';
+
 const Contact = () => {
+  const { t } = useLanguage();
   return (
     <section id="contact" className="py-24 bg-white relative">
       <div className="container">
         <div className="text-center mb-16">
           <div className="text-gold text-xs font-bold uppercase tracking-[0.2em] mb-4">
-            Get In Touch
+            {t.contact.subtitle}
           </div>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-dark mb-6">
-            Contact & Location
+            {t.contact.title}
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
-            Visit one of our branches or send us a message. We are here to help you with all your automotive needs.
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -29,15 +32,15 @@ const Contact = () => {
           >
             {/* Dubai Branch */}
             <div className="relative pl-8 border-l-2 border-gold/30">
-              <h3 className="text-2xl font-serif font-bold text-dark mb-6">Dubai Branch</h3>
+              <h3 className="text-2xl font-serif font-bold text-dark mb-6">{t.contact.dubaiBranch}</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <MapPin className="text-gold mt-1 flex-shrink-0" size={20} />
                   <div>
-                    <p className="text-dark font-medium">123 Industrial Area, Al Quoz</p>
-                    <p className="text-gray-500 text-sm">Dubai, United Arab Emirates</p>
+                    <p className="text-dark font-medium">{t.contact.addressVal}</p>
+                    <p className="text-gray-500 text-sm">{t.contact.dubaiAddr}</p>
                     <a href="#" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold mt-2 hover:text-dark transition-colors">
-                      <Navigation size={12} /> Open in Waze
+                      <Navigation size={12} /> {t.contact.waze}
                     </a>
                   </div>
                 </div>
@@ -54,15 +57,15 @@ const Contact = () => {
 
             {/* Sharjah Branch */}
             <div className="relative pl-8 border-l-2 border-gold/30">
-              <h3 className="text-2xl font-serif font-bold text-dark mb-6">Sharjah Branch</h3>
+              <h3 className="text-2xl font-serif font-bold text-dark mb-6">{t.contact.sharjahBranch}</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <MapPin className="text-gold mt-1 flex-shrink-0" size={20} />
                   <div>
                     <p className="text-dark font-medium">456 Industrial Area 3</p>
-                    <p className="text-gray-500 text-sm">Sharjah, United Arab Emirates</p>
+                    <p className="text-gray-500 text-sm">{t.contact.sharjahAddr}</p>
                     <a href="#" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold mt-2 hover:text-dark transition-colors">
-                      <Navigation size={12} /> Open in Waze
+                      <Navigation size={12} /> {t.contact.waze}
                     </a>
                   </div>
                 </div>
@@ -81,9 +84,8 @@ const Contact = () => {
             <div className="bg-light-bg p-8 rounded-2xl flex items-start gap-4">
               <Clock className="text-gold mt-1" size={24} />
               <div>
-                <h4 className="font-bold text-dark mb-2">Opening Hours</h4>
-                <p className="text-gray-600 text-sm mb-1">Mon - Sat: 8:00 AM - 7:00 PM</p>
-                <p className="text-gray-600 text-sm">Friday: Closed</p>
+                <h4 className="font-bold text-dark mb-2">{t.contact.hours}</h4>
+                <p className="text-gray-600 text-sm mb-1">{t.contact.hoursVal}</p>
               </div>
             </div>
           </motion.div>
@@ -95,52 +97,52 @@ const Contact = () => {
             viewport={{ once: true }}
             className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100"
           >
-            <h3 className="text-2xl font-serif font-bold text-dark mb-8">Send us a Message</h3>
+            <h3 className="text-2xl font-serif font-bold text-dark mb-8">{t.contact.form.submit}</h3>
             <form className="space-y-6">
               <div className="space-y-2">
-                <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-gray-500">Full Name</label>
+                <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-gray-500">{t.contact.form.name}</label>
                 <input 
                   type="text" 
                   id="name" 
                   className="w-full bg-light-bg border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
-                  placeholder="John Doe"
+                  placeholder={t.contact.form.namePh}
                   required
                 />
               </div>
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="phone" className="text-xs font-bold uppercase tracking-widest text-gray-500">Phone Number</label>
+                  <label htmlFor="phone" className="text-xs font-bold uppercase tracking-widest text-gray-500">{t.contact.form.phone}</label>
                   <input 
                     type="tel" 
                     id="phone" 
                     className="w-full bg-light-bg border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
-                    placeholder="+971 50..."
+                    placeholder={t.contact.form.phonePh}
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="service" className="text-xs font-bold uppercase tracking-widest text-gray-500">Service Required</label>
+                  <label htmlFor="service" className="text-xs font-bold uppercase tracking-widest text-gray-500">{t.contact.form.service}</label>
                   <select 
                     id="service" 
                     className="w-full bg-light-bg border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors appearance-none"
                   >
-                    <option value="">Select Service</option>
-                    <option value="maintenance">Regular Maintenance</option>
-                    <option value="repair">Repair</option>
-                    <option value="bodywork">Body & Paint</option>
-                    <option value="other">Other</option>
+                    <option value="">{t.contact.form.service}</option>
+                    <option value="maintenance">{t.contact.form.serviceOptions.maintenance}</option>
+                    <option value="repair">{t.contact.form.serviceOptions.repair}</option>
+                    <option value="bodywork">{t.contact.form.serviceOptions.bodywork}</option>
+                    <option value="other">{t.contact.form.serviceOptions.other}</option>
                   </select>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-gray-500">Message</label>
+                <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-gray-500">{t.contact.form.message}</label>
                 <textarea 
                   id="message" 
                   rows={4}
                   className="w-full bg-light-bg border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors resize-none"
-                  placeholder="How can we help you?"
+                  placeholder={t.contact.form.messagePh}
                 ></textarea>
               </div>
 
@@ -148,7 +150,7 @@ const Contact = () => {
                 type="submit" 
                 className="w-full bg-dark text-white font-bold uppercase tracking-widest text-sm py-4 rounded-lg hover:bg-gold hover:text-dark transition-all duration-300 flex items-center justify-center gap-2 group"
               >
-                Send Message
+                {t.contact.form.submit}
                 <Send size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </form>

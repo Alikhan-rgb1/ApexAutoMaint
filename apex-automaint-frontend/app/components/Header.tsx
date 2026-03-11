@@ -4,11 +4,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
 import Link from 'next/link';
 
+import { useLanguage } from '../context/LanguageContext';
+
 interface HeaderProps {
   onBookClick?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
+  const { t, language, setLanguage, dir } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -22,10 +25,10 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'About Us', href: '#about' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Contact', href: '#contact' },
+    { name: t.nav.services, href: '#services' },
+    { name: t.nav.about, href: '#about' },
+    { name: t.nav.faq, href: '#faq' },
+    { name: t.nav.contact, href: '#contact' },
   ];
 
   return (
@@ -33,14 +36,30 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
       {/* Top Banner - Sleek Dark */}
       <div className="bg-dark text-white text-[10px] uppercase tracking-widest py-2 hidden md:block border-b border-white/10">
         <div className="container flex justify-between items-center">
-          <span className="opacity-80">24/7 Concierge Service & Free Pickup/Delivery | ISO 9001 Certified</span>
+          <span className="opacity-80">{t.topBanner.text}</span>
           <div className="flex items-center gap-4">
             <a href="tel:+971501234567" className="hover:text-gold transition-colors flex items-center gap-2">
               <Phone size={12} /> +971 50 123 4567
             </a>
             <div className="h-3 w-px bg-white/20"></div>
-            <button className="hover:text-gold transition-colors font-bold">EN</button>
-            <button className="opacity-50 hover:opacity-100 hover:text-gold transition-colors">AR</button>
+            <button 
+              onClick={() => setLanguage('en')}
+              className={`transition-colors font-bold ${language === 'en' ? 'text-gold' : 'opacity-50 hover:opacity-100'}`}
+            >
+              EN
+            </button>
+            <button 
+              onClick={() => setLanguage('ar')}
+              className={`transition-colors font-bold ${language === 'ar' ? 'text-gold' : 'opacity-50 hover:opacity-100'}`}
+            >
+              AR
+            </button>
+            <button 
+              onClick={() => setLanguage('ru')}
+              className={`transition-colors font-bold ${language === 'ru' ? 'text-gold' : 'opacity-50 hover:opacity-100'}`}
+            >
+              RU
+            </button>
           </div>
         </div>
       </div>
@@ -84,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
                 ? 'border-dark text-dark hover:bg-dark hover:text-white' 
                 : 'border-gold text-gold hover:bg-gold hover:text-dark'
             }`}>
-              Book Appointment
+              {t.nav.book}
             </button>
           </nav>
 
@@ -123,12 +142,13 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
                   onBookClick?.();
                 }}
                 className="mt-4 px-8 py-3 bg-gold text-dark font-bold uppercase tracking-widest text-sm hover:bg-gold-hover transition-colors">
-                Book Appointment
+                {t.nav.book}
               </button>
               
-              <div className="absolute bottom-10 flex gap-6 text-dark opacity-50">
-                <span className="text-sm">EN</span>
-                <span className="text-sm">AR</span>
+              <div className="absolute bottom-10 flex gap-6 text-dark opacity-50 font-bold">
+                <span onClick={() => setLanguage('en')} className={language === 'en' ? 'text-gold' : ''}>EN</span>
+                <span onClick={() => setLanguage('ar')} className={language === 'ar' ? 'text-gold' : ''}>AR</span>
+                <span onClick={() => setLanguage('ru')} className={language === 'ru' ? 'text-gold' : ''}>RU</span>
               </div>
             </motion.div>
           )}

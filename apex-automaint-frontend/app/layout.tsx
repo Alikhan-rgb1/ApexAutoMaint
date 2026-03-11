@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+"use client";
 import { Poppins, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,11 +15,6 @@ const playfairDisplay = Playfair_Display({
   variable: "--font-playfair-display",
 });
 
-export const metadata: Metadata = {
-  title: "ApexAutoMaint - Professional Car Repair Service Dubai & Sharjah",
-  description: "ApexAutoMaint - Professional car repair service in UAE. Body repair, electrical work, mechanical service, ceramic coating, AC service, transmission repair. ISO 9001 certified. 24/7 concierge. Dubai & Sharjah.",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,7 +25,9 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${playfairDisplay.variable} antialiased`}
       >
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

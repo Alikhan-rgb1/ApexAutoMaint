@@ -2,6 +2,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+import { useLanguage } from '../context/LanguageContext';
+
 const logos = [
   'AXA', 'Allianz', 'Noor Takaful', 'Oman Insurance', 
   'RSA', 'Sukoon', 'Tokio Marine', 'Salama',
@@ -9,6 +11,7 @@ const logos = [
 ];
 
 const Insurance = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-20 bg-dark border-t border-white/10 overflow-hidden">
       <div className="container text-center mb-12">
@@ -18,7 +21,7 @@ const Insurance = () => {
           viewport={{ once: true }}
           className="text-white/60 text-sm uppercase tracking-widest font-medium"
         >
-          Trusted by Major Insurance Companies
+          {t.insurance.title}
         </motion.div>
       </div>
 

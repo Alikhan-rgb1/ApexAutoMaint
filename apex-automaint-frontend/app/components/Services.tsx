@@ -3,15 +3,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Car, Zap, Wrench, ShieldCheck, Thermometer, Cog, PhoneCall, FileCheck, ArrowUpRight } from 'lucide-react';
 
+import { useLanguage } from '../context/LanguageContext';
+
 const services = [
-  { icon: Car, title: 'Body & Paint Repair', description: 'Expert denting, painting, and collision repair to restore your car\'s original look and feel.' },
-  { icon: Zap, title: 'Electrical Works', description: 'Advanced diagnostics and repair for all electrical systems, wiring, and components.' },
-  { icon: Wrench, title: 'Mechanical Service', description: 'Engine, suspension, and brake services to ensure optimal performance and safety.' },
-  { icon: ShieldCheck, title: 'Ceramic Coating', description: 'Premium ceramic coating for long-lasting protection, a brilliant shine, and easy cleaning.' },
-  { icon: Thermometer, title: 'AC Service & Repair', description: 'Complete AC system check, gas refilling, and repair to keep you cool in the UAE heat.' },
-  { icon: Cog, title: 'Transmission Repair', description: 'Specialized service and repair for both automatic and manual transmission systems.' },
-  { icon: PhoneCall, title: '24/7 Concierge', description: 'Free vehicle pickup and delivery service across Dubai and Sharjah for your convenience.' },
-  { icon: FileCheck, title: 'Insurance Approved', description: 'We work with all major insurance providers to streamline your claims process.' },
+  { icon: Car, key: 'bodywork' },
+  { icon: Zap, key: 'electrical' },
+  { icon: Wrench, key: 'mechanical' },
+  { icon: ShieldCheck, key: 'ceramic' },
+  { icon: Thermometer, key: 'ac' },
+  { icon: Cog, key: 'transmission' },
+  { icon: PhoneCall, key: 'concierge' },
+  { icon: FileCheck, key: 'insurance' },
 ];
 
 const containerVariants = {
@@ -34,6 +36,17 @@ const itemVariants = {
 };
 
 const Services = () => {
+  const { t } = useLanguage();
+  
+  const serviceItems = [
+    { icon: Car, title: t.services.items.detailing.title, description: t.services.items.detailing.desc },
+    { icon: Zap, title: t.services.items.electrical.title, description: t.services.items.electrical.desc },
+    { icon: Wrench, title: t.services.items.mechanical.title, description: t.services.items.mechanical.desc },
+    { icon: ShieldCheck, title: t.services.items.maintenance.title, description: t.services.items.maintenance.desc },
+    { icon: Thermometer, title: t.services.items.ac.title, description: t.services.items.ac.desc },
+    { icon: Cog, title: t.services.items.diagnostics.title, description: t.services.items.diagnostics.desc },
+  ];
+
   return (
     <section id="services" className="py-24 bg-light-bg relative overflow-hidden">
       {/* Decorative Background Elements */}
@@ -50,7 +63,7 @@ const Services = () => {
             viewport={{ once: true }}
             className="text-gold text-xs font-bold uppercase tracking-[0.2em] mb-4"
           >
-            Our Expertise
+            {t.services.subtitle}
           </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
@@ -59,7 +72,7 @@ const Services = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-serif font-bold text-dark mb-6"
           >
-            Comprehensive Auto Services
+            {t.services.title}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 10 }}
@@ -68,8 +81,7 @@ const Services = () => {
             transition={{ delay: 0.2 }}
             className="text-gray-500 text-lg leading-relaxed"
           >
-            We offer a wide range of services to keep your vehicle in top condition. 
-            Our state-of-the-art facility is equipped to handle all makes and models with precision and care.
+            {t.services.desc}
           </motion.p>
         </div>
 
@@ -78,9 +90,9 @@ const Services = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {services.map((service, index) => (
+          {serviceItems.map((service, index) => (
             <motion.div 
               key={index}
               variants={itemVariants}
