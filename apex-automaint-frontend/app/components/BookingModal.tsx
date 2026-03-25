@@ -11,20 +11,38 @@ interface BookingModalProps {
 }
 
 const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
-  const { t, dir } = useLanguage();
+  const { t, dir, language } = useLanguage();
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [date, setDate] = useState('');
+  const [service, setService] = useState(t.modal.serviceOptions.general);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState('submitting');
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/telegram-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'booking',
+          name,
+          phone,
+          date,
+          service,
+          language,
+        }),
+      });
+      if (!res.ok) throw new Error('Failed');
       setFormState('success');
       setTimeout(() => {
         onClose();
         setFormState('idle');
       }, 3000);
-    }, 1500);
+    } catch {
+      setFormState('idle');
+    }
   };
 
   return (
@@ -89,6 +107,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
                         type="text" 
                         placeholder={t.modal.namePh}
                         className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                       />
                     </div>
 
@@ -102,6 +122,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
                           type="tel" 
                           placeholder={t.modal.phonePh}
                           className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
                         />
                       </div>
                       <div className="space-y-2">
@@ -112,6 +134,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
                           required
                           type="date" 
                           className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all"
+                          value={date}
+                          onChange={(e) => setDate(e.target.value)}
                         />
                       </div>
                     </div>
@@ -120,13 +144,13 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
                       <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
                         <FileText size={16} className="text-gold" /> {t.modal.service}
                       </label>
-                      <select className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all bg-white">
-                        <option>{t.modal.serviceOptions.general}</option>
-                        <option>{t.modal.serviceOptions.oil}</option>
-                        <option>{t.modal.serviceOptions.brake}</option>
-                        <option>{t.modal.serviceOptions.engine}</option>
-                        <option>{t.modal.serviceOptions.body}</option>
-                        <option>{t.modal.serviceOptions.other}</option>
+                      <select className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all bg-white" value={service} onChange={(e) => setService(e.target.value)}>
+                        <option value={t.modal.serviceOptions.general}>{t.modal.serviceOptions.general}</option>
+                        <option value={t.modal.serviceOptions.oil}>{t.modal.serviceOptions.oil}</option>
+                        <option value={t.modal.serviceOptions.brake}>{t.modal.serviceOptions.brake}</option>
+                        <option value={t.modal.serviceOptions.engine}>{t.modal.serviceOptions.engine}</option>
+                        <option value={t.modal.serviceOptions.body}>{t.modal.serviceOptions.body}</option>
+                        <option value={t.modal.serviceOptions.other}>{t.modal.serviceOptions.other}</option>
                       </select>
                     </div>
 

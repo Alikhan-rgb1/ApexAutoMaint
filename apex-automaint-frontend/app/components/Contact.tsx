@@ -1,12 +1,45 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, Navigation } from 'lucide-react';
 
 import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [service, setService] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('submitting');
+    try {
+      const res = await fetch('/api/telegram-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'contact',
+          name,
+          phone,
+          service,
+          message,
+          language,
+        }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setStatus('success');
+      setName('');
+      setPhone('');
+      setService('');
+      setMessage('');
+      setTimeout(() => setStatus('idle'), 3000);
+    } catch {
+      setStatus('idle');
+    }
+  };
   return (
     <section id="contact" className="py-24 bg-white relative">
       <div className="container">
@@ -39,14 +72,18 @@ const Contact = () => {
                   <div>
                     <p className="text-dark font-medium">{t.contact.addressVal}</p>
                     <p className="text-gray-500 text-sm">{t.contact.dubaiAddr}</p>
-                    <a href="#" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold mt-2 hover:text-dark transition-colors">
+                    <a href="https://waze.com/ul/hthrrur3s7" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold mt-2 hover:text-dark transition-colors">
                       <Navigation size={12} /> {t.contact.waze}
                     </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="text-gold flex-shrink-0" size={20} />
-                  <a href="tel:+971501234567" className="text-gray-600 hover:text-gold transition-colors font-medium">+971 50 123 4567</a>
+                  <a href="tel:+971523524196" className="text-gray-600 hover:text-gold transition-colors font-medium">+971523524196</a>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Phone className="text-gold flex-shrink-0" size={20} />
+                  <a href="tel:+971522581990" className="text-gray-600 hover:text-gold transition-colors font-medium">+971 52 258 1990</a>
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="text-gold flex-shrink-0" size={20} />
@@ -55,30 +92,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Sharjah Branch */}
-            <div className="relative pl-8 border-l-2 border-gold/30">
-              <h3 className="text-2xl font-serif font-bold text-dark mb-6">{t.contact.sharjahBranch}</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <MapPin className="text-gold mt-1 flex-shrink-0" size={20} />
-                  <div>
-                    <p className="text-dark font-medium">456 Industrial Area 3</p>
-                    <p className="text-gray-500 text-sm">{t.contact.sharjahAddr}</p>
-                    <a href="#" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold mt-2 hover:text-dark transition-colors">
-                      <Navigation size={12} /> {t.contact.waze}
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <Phone className="text-gold flex-shrink-0" size={20} />
-                  <a href="tel:+971507654321" className="text-gray-600 hover:text-gold transition-colors font-medium">+971 50 765 4321</a>
-                </div>
-                <div className="flex items-center gap-4">
-                  <Mail className="text-gold flex-shrink-0" size={20} />
-                  <a href="mailto:info.shj@apexauto.ae" className="text-gray-600 hover:text-gold transition-colors font-medium">info.shj@apexauto.ae</a>
-                </div>
-              </div>
-            </div>
+            
 
             {/* Hours */}
             <div className="bg-light-bg p-8 rounded-2xl flex items-start gap-4">
@@ -98,7 +112,7 @@ const Contact = () => {
             className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100"
           >
             <h3 className="text-2xl font-serif font-bold text-dark mb-8">{t.contact.form.submit}</h3>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-gray-500">{t.contact.form.name}</label>
                 <input 
@@ -107,6 +121,8 @@ const Contact = () => {
                   className="w-full bg-light-bg border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
                   placeholder={t.contact.form.namePh}
                   required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
               
@@ -119,6 +135,8 @@ const Contact = () => {
                     className="w-full bg-light-bg border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
                     placeholder={t.contact.form.phonePh}
                     required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
                 <div className="space-y-2">
@@ -126,6 +144,8 @@ const Contact = () => {
                   <select 
                     id="service" 
                     className="w-full bg-light-bg border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors appearance-none"
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
                   >
                     <option value="">{t.contact.form.service}</option>
                     <option value="maintenance">{t.contact.form.serviceOptions.maintenance}</option>
@@ -143,14 +163,17 @@ const Contact = () => {
                   rows={4}
                   className="w-full bg-light-bg border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors resize-none"
                   placeholder={t.contact.form.messagePh}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
 
               <button 
                 type="submit" 
                 className="w-full bg-dark text-white font-bold uppercase tracking-widest text-sm py-4 rounded-lg hover:bg-gold hover:text-dark transition-all duration-300 flex items-center justify-center gap-2 group"
+                disabled={status === 'submitting'}
               >
-                {t.contact.form.submit}
+                {status === 'submitting' ? t.contact.form.submitting : status === 'success' ? t.contact.form.success : t.contact.form.submit}
                 <Send size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </form>

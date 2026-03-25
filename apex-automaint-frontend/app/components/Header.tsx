@@ -38,8 +38,12 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
         <div className="container flex justify-between items-center">
           <span className="opacity-80">{t.topBanner.text}</span>
           <div className="flex items-center gap-4">
-            <a href="tel:+971501234567" className="hover:text-gold transition-colors flex items-center gap-2">
-              <Phone size={12} /> +971 50 123 4567
+            <a href="tel:+971523524196" className="hover:text-gold transition-colors flex items-center gap-2">
+              <Phone size={12} /> +971523524196
+            </a>
+            <div className="h-3 w-px bg-white/20"></div>
+            <a href="tel:+971522581990" className="hover:text-gold transition-colors flex items-center gap-2">
+              <Phone size={12} /> +971 52 258 1990
             </a>
             <div className="h-3 w-px bg-white/20"></div>
             <button 
