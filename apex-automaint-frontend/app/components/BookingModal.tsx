@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Calendar, User, Phone, FileText, CheckCircle } from 'lucide-react';
+import { X, Calendar, User, Phone, FileText, CheckCircle, Clock } from 'lucide-react';
 
 import { useLanguage } from '../context/LanguageContext';
 
@@ -16,6 +16,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
   const [service, setService] = useState(t.modal.serviceOptions.general);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,6 +31,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
           name,
           phone,
           date,
+          time,
           service,
           language,
         }),
@@ -139,6 +141,19 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
                         />
                       </div>
                     </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                      <Clock size={16} className="text-gold" /> {t.modal.time}
+                    </label>
+                    <input 
+                      required
+                      type="time" 
+                      className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all"
+                      value={time}
+                      onChange={(e) => setTime(e.target.value)}
+                    />
+                  </div>
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-700 flex items-center gap-2">

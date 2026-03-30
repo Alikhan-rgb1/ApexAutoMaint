@@ -5,6 +5,7 @@ type LeadPayload = {
   name?: string;
   phone?: string;
   date?: string;
+  time?: string;
   service?: string;
   message?: string;
   language?: string;
@@ -26,6 +27,7 @@ export async function POST(req: NextRequest) {
     if (body.name) lines.push(`Name: ${body.name}`);
     if (body.phone) lines.push(`Phone: ${body.phone}`);
     if (body.date) lines.push(`Date: ${body.date}`);
+    if (body.time) lines.push(`Time: ${body.time}`);
     if (body.service) lines.push(`Service: ${body.service}`);
     if (body.message) lines.push(`Message: ${body.message}`);
     const text = lines.join('\n');
