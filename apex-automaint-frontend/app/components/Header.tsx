@@ -8,10 +8,12 @@ import { useLanguage } from '../context/LanguageContext';
 
 interface HeaderProps {
   onBookClick?: () => void;
+  forceDarkHeader?: boolean;
+  showTopBannerOnMobile?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
-  const { t, language, setLanguage, dir } = useLanguage();
+const Header: React.FC<HeaderProps> = ({ onBookClick, forceDarkHeader, showTopBannerOnMobile }) => {
+  const { t, language, setLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -34,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
   return (
     <>
       {/* Top Banner - Sleek Dark */}
-      <div className="bg-dark text-white text-[10px] uppercase tracking-widest py-2 hidden md:block border-b border-white/10">
+      <div className={`${showTopBannerOnMobile ? 'fixed top-0 left-0 right-0 z-50' : ''} bg-dark text-white text-[10px] uppercase tracking-widest py-2 ${showTopBannerOnMobile ? 'block' : 'hidden md:block'} border-b border-white/10`}>
         <div className="container flex justify-between items-center">
           <span className="opacity-80">{t.topBanner.text}</span>
           <div className="flex items-center gap-4">
@@ -70,17 +72,19 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
 
       {/* Main Header */}
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled || isMenuOpen 
-            ? 'bg-white/90 backdrop-blur-md shadow-sm py-4 border-b border-gray-100' 
-            : 'bg-transparent py-6 md:top-8'
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${showTopBannerOnMobile ? 'top-8' : 'top-0'} ${
+          forceDarkHeader
+            ? 'bg-dark/95 backdrop-blur-md shadow-sm py-4 border-b border-white/10'
+            : (isScrolled || isMenuOpen 
+              ? 'bg-white/90 backdrop-blur-md shadow-sm py-4 border-b border-gray-100' 
+              : 'bg-transparent py-6 md:top-8')
         }`}
       >
         <div className="container flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="relative z-50 group">
             <span className={`font-serif text-2xl md:text-3xl font-black tracking-tight transition-colors duration-300 ${
-              isScrolled || isMenuOpen ? 'text-dark' : 'text-white'
+              forceDarkHeader ? 'text-white' : ((isScrolled || isMenuOpen) ? 'text-dark' : 'text-white')
             }`}>
               ApexAuto<span className="text-gold">Maint</span>
             </span>
@@ -93,20 +97,34 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
                 key={link.name} 
                 href={link.href}
                 className={`text-xs font-medium uppercase tracking-widest hover:text-gold transition-colors relative group ${
-                  isScrolled ? 'text-dark-lighter' : 'text-gray-200'
+                  forceDarkHeader ? 'text-gray-200' : (isScrolled ? 'text-dark-lighter' : 'text-gray-200')
                 }`}
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
+            <Link
+              href="/login"
+              className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${
+                forceDarkHeader
+                  ? 'border-white text-white hover:bg-white hover:text-dark'
+                  : ((isScrolled || isMenuOpen)
+                    ? 'border-dark text-dark hover:bg-dark hover:text-white'
+                    : 'border-white text-white hover:bg-white hover:text-dark')
+              }`}
+            >
+              {t?.nav?.login ?? 'Login'}
+            </Link>
             <button 
               onClick={onBookClick}
               className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${
-              isScrolled 
-                ? 'border-dark text-dark hover:bg-dark hover:text-white' 
-                : 'border-gold text-gold hover:bg-gold hover:text-dark'
-            }`}>
+                forceDarkHeader
+                  ? 'border-gold text-gold hover:bg-gold hover:text-dark'
+                  : (isScrolled 
+                    ? 'border-dark text-dark hover:bg-dark hover:text-white' 
+                    : 'border-gold text-gold hover:bg-gold hover:text-dark')
+              }`}>
               {t.nav.book}
             </button>
           </nav>
@@ -116,7 +134,7 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
             className="md:hidden relative z-50 p-2 text-gold"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} className={isScrolled ? 'text-dark' : 'text-white'} />}
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} className={forceDarkHeader ? 'text-white' : ((isScrolled || isMenuOpen) ? 'text-dark' : 'text-white')} />}
           </button>
         </div>
 
@@ -140,6 +158,13 @@ const Header: React.FC<HeaderProps> = ({ onBookClick }) => {
                   {link.name}
                 </Link>
               ))}
+              <Link 
+                href="/login"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-8 py-3 border-2 border-dark text-dark font-bold uppercase tracking-widest text-sm hover:bg-dark hover:text-white transition-colors"
+              >
+                {t?.nav?.login ?? 'Login'}
+              </Link>
               <button 
                 onClick={() => {
                   setIsMenuOpen(false);

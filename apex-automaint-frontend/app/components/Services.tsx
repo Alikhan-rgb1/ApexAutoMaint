@@ -1,20 +1,9 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Car, Zap, Wrench, ShieldCheck, Thermometer, Cog, PhoneCall, FileCheck, ArrowUpRight } from 'lucide-react';
+import { Car, Zap, Wrench, ShieldCheck, Thermometer, Cog, ArrowUpRight } from 'lucide-react';
 
 import { useLanguage } from '../context/LanguageContext';
-
-const services = [
-  { icon: Car, key: 'bodywork' },
-  { icon: Zap, key: 'electrical' },
-  { icon: Wrench, key: 'mechanical' },
-  { icon: ShieldCheck, key: 'ceramic' },
-  { icon: Thermometer, key: 'ac' },
-  { icon: Cog, key: 'transmission' },
-  { icon: PhoneCall, key: 'concierge' },
-  { icon: FileCheck, key: 'insurance' },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },

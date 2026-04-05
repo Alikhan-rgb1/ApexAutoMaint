@@ -3,13 +3,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Shield, Star, Users } from 'lucide-react';
 
-const features = [
-  "ISO 9001:2015 Certified Facility",
-  "Latest Diagnostic Technology",
-  "Genuine Parts Guarantee",
-  "Transparent Pricing Policy"
-];
-
 import { useLanguage } from '../context/LanguageContext';
 
 interface AboutProps {

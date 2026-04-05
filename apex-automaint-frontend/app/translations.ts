@@ -8,6 +8,8 @@ export const translations = {
       faq: 'FAQ',
       contact: 'Contact',
       book: 'Book Appointment',
+      login: 'Login',
+      register: 'Register',
     },
     topBanner: {
       text: '24/7 Concierge Service & Free Pickup/Delivery | ISO 9001 Certified',
@@ -145,6 +147,8 @@ export const translations = {
       faq: 'الأسئلة الشائعة',
       contact: 'اتصل بنا',
       book: 'احجز موعد',
+      login: 'تسجيل الدخول',
+      register: 'تسجيل',
     },
     topBanner: {
       text: 'خدمة كونسيرج 24/7 واستلام وتسليم مجاني | معتمدون بشهادة ISO 9001',
@@ -282,6 +286,8 @@ export const translations = {
       faq: 'FAQ',
       contact: 'Контакты',
       book: 'Записаться',
+      login: 'Войти в кабинет',
+      register: 'Регистрация',
     },
     topBanner: {
       text: 'Круглосуточный консьерж-сервис и бесплатный трансфер авто | Сертификация ISO 9001',

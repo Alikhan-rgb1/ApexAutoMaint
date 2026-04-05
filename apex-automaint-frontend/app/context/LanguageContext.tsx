@@ -12,21 +12,21 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
-
-  // Load language from localStorage on mount
-  useEffect(() => {
-    const savedLang = localStorage.getItem('language') as Language;
-    if (savedLang && (savedLang === 'en' || savedLang === 'ar' || savedLang === 'ru')) {
-      setLanguage(savedLang);
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const savedLang = localStorage.getItem('language') as Language | null;
+      if (savedLang === 'en' || savedLang === 'ar' || savedLang === 'ru') return savedLang;
     }
-  }, []);
+    return 'en';
+  });
 
   // Save language to localStorage when changed
   useEffect(() => {
-    localStorage.setItem('language', language);
-    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = language;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('language', language);
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = language;
+    }
   }, [language]);
 
   const value = {
