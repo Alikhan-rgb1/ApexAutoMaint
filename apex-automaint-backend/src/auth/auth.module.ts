@@ -12,9 +12,12 @@ import { AuthService } from './auth.service';
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const secret =
-          config.get<string>('JWT_SECRET') ?? 'dev_jwt_secret_change_me';
-        return { secret };
+        const nodeEnv = config.get<string>('NODE_ENV') ?? 'development';
+        const secret = config.get<string>('JWT_SECRET');
+        if ((nodeEnv === 'production' || nodeEnv === 'prod') && !secret) {
+          throw new Error('JWT_SECRET is required in production');
+        }
+        return { secret: secret ?? 'dev_jwt_secret_change_me' };
       },
     }),
   ],
