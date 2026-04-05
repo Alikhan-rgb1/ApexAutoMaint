@@ -41,7 +41,7 @@ export const translations = {
         mechanical: { title: 'Mechanical Repairs', desc: 'Engine, transmission, and suspension repairs by experts.' },
         electrical: { title: 'Electrical Services', desc: 'Battery, alternator, and wiring solutions for modern cars.' },
         ac: { title: 'AC Services', desc: 'Climate control maintenance, gas refill, and leak detection.' },
-        detailing: { title: 'Premium Detailing', desc: 'Interior and exterior detailing with ceramic coating options.' },
+        detailing: { title: 'Premium Detailing', desc: 'Coming soon — studio-grade detailing program is being prepared.' },
       }
     },
     about: {
@@ -178,7 +178,7 @@ export const translations = {
         mechanical: { title: 'إصلاحات ميكانيكية', desc: 'إصلاح المحرك وناقل الحركة والتعليق بواسطة خبراء.' },
         electrical: { title: 'خدمات كهربائية', desc: 'حلول للبطارية والدينامو والأسلاك للسيارات الحديثة.' },
         ac: { title: 'خدمات التكييف', desc: 'صيانة التحكم بالمناخ وتعبئة الغاز وكشف التسربات.' },
-        detailing: { title: 'تلميع فاخر', desc: 'تلميع داخلي وخارجي مع خيارات نانو سيراميك.' },
+        detailing: { title: 'تلميع فاخر', desc: 'قريبًا — نجهز برنامج تلميع احترافي بمواصفات استوديو.' },
       }
     },
     about: {
@@ -315,7 +315,7 @@ export const translations = {
         mechanical: { title: 'Слесарный ремонт', desc: 'Ремонт двигателя, трансмиссии и подвески экспертами.' },
         electrical: { title: 'Автоэлектрика', desc: 'Решение проблем с аккумулятором, генератором и проводкой.' },
         ac: { title: 'Обслуживание кондиционера', desc: 'Заправка, поиск утечек и ремонт климат-контроля.' },
-        detailing: { title: 'Премиум детейлинг', desc: 'Химчистка, полировка и нанесение керамических покрытий.' },
+        detailing: { title: 'Премиум детейлинг', desc: 'Скоро — готовим студийную программу детейлинга.' },
       }
     },
     about: {

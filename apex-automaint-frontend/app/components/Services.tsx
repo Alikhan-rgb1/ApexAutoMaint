@@ -39,12 +39,12 @@ const Services = () => {
   const { t } = useLanguage();
   
   const serviceItems = [
-    { icon: Car, title: t.services.items.detailing.title, description: t.services.items.detailing.desc },
     { icon: Zap, title: t.services.items.electrical.title, description: t.services.items.electrical.desc },
     { icon: Wrench, title: t.services.items.mechanical.title, description: t.services.items.mechanical.desc },
     { icon: ShieldCheck, title: t.services.items.maintenance.title, description: t.services.items.maintenance.desc },
     { icon: Thermometer, title: t.services.items.ac.title, description: t.services.items.ac.desc },
     { icon: Cog, title: t.services.items.diagnostics.title, description: t.services.items.diagnostics.desc },
+    { icon: Car, title: t.services.items.detailing.title, description: t.services.items.detailing.desc },
   ];
 
   return (
