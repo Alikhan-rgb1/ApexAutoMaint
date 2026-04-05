@@ -9,6 +9,8 @@ export default function LoginPage() {
   const { t, language } = useLanguage();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
+  const [errorText, setErrorText] = useState('');
 
   const subtitle =
     language === 'ru'
@@ -19,10 +21,10 @@ export default function LoginPage() {
 
   const fieldLabel =
     language === 'ru'
-      ? 'Email / Телефон'
+      ? 'Email'
       : language === 'ar'
-        ? 'البريد الإلكتروني / الهاتف'
-        : 'Email / Phone';
+        ? 'البريد الإلكتروني'
+        : 'Email';
 
   const passwordLabel =
     language === 'ru'
@@ -59,8 +61,32 @@ export default function LoginPage() {
               </p>
 
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
+                  setStatus('submitting');
+                  setErrorText('');
+                  try {
+                    const res = await fetch('/api/auth/login', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ email, password }),
+                    });
+                    const data = await res.json().catch(() => null);
+                    if (!res.ok) {
+                      setStatus('error');
+                      setErrorText(data?.message ?? data?.error ?? 'Login failed');
+                      return;
+                    }
+                    if (data?.accessToken) {
+                      localStorage.setItem('auth_token', data.accessToken);
+                    }
+                    window.location.href = '/cabinet';
+                  } catch {
+                    setStatus('error');
+                    setErrorText('Login failed');
+                  } finally {
+                    setStatus((prev) => (prev === 'error' ? 'error' : 'idle'));
+                  }
                 }}
                 className="space-y-6"
               >
@@ -69,11 +95,11 @@ export default function LoginPage() {
                     {fieldLabel}
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
-                    placeholder="you@example.com / +971 52 ..."
+                    placeholder="you@example.com"
                     required
                   />
                 </div>
@@ -92,11 +118,17 @@ export default function LoginPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-gold text-dark font-bold uppercase tracking-widest text-sm py-4 rounded-lg hover:bg-white transition-colors"
+                  disabled={status === 'submitting'}
+                  className="w-full bg-gold text-dark font-bold uppercase tracking-widest text-sm py-4 rounded-lg hover:bg-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {t.nav.login}
                 </button>
               </form>
+              {status === 'error' && (
+                <div className="mt-4 text-sm text-red-300 text-center">
+                  {errorText}
+                </div>
+              )}
 
               <div className="mt-8 flex items-center justify-center gap-3">
                 <span className="text-sm text-gray-400">

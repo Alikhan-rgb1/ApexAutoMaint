@@ -3,7 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
+import { CreateUsers20260405141000 } from './migrations/20260405141000-create-users';
 import { S3Module } from './s3/s3.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -41,9 +44,13 @@ import { S3Module } from './s3/s3.module';
           extra: dnsFamily ? { family: dnsFamily } : undefined,
           autoLoadEntities: true,
           synchronize: config.get<string>('DB_SYNCHRONIZE') === 'true',
+          migrationsRun: true,
+          migrations: [CreateUsers20260405141000],
         };
       },
     }),
+    UsersModule,
+    AuthModule,
     S3Module,
   ],
   controllers: [AppController],
