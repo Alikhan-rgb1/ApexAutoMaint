@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import type { StringValue } from 'ms';
 
 import { UsersService } from '../users/users.service';
+import type { AuthUser } from './auth.types';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 
@@ -28,10 +29,15 @@ export class AuthService {
       carYear: dto.carYear,
       serviceType: dto.serviceType,
     });
-    const accessToken = await this.issueToken(user.id, user.email);
+    const accessToken = await this.issueToken(user.id, user.email, user.role);
     return {
       accessToken,
-      user: { id: user.id, email: user.email, name: user.name },
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
     };
   }
 
@@ -46,19 +52,21 @@ export class AuthService {
     if (!passwordMatches)
       throw new UnauthorizedException('Invalid email or password');
 
-    const accessToken = await this.issueToken(user.id, user.email);
+    const accessToken = await this.issueToken(user.id, user.email, user.role);
     return {
       accessToken,
-      user: { id: user.id, email: user.email, name: user.name },
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
     };
   }
 
   async me(accessToken: string) {
     try {
-      const payload = await this.jwtService.verifyAsync<{
-        sub: string;
-        email: string;
-      }>(accessToken);
+      const payload = await this.jwtService.verifyAsync<AuthUser>(accessToken);
       const user = await this.usersService.findById(payload.sub);
       if (!user) throw new UnauthorizedException('Invalid token');
       return {
@@ -66,6 +74,7 @@ export class AuthService {
           id: user.id,
           email: user.email,
           name: user.name,
+          role: user.role,
           phone: user.phone,
           carMake: user.carMake,
           carModel: user.carModel,
@@ -79,9 +88,16 @@ export class AuthService {
     }
   }
 
-  private async issueToken(userId: string, email: string) {
+  private async issueToken(
+    userId: string,
+    email: string,
+    role: AuthUser['role'],
+  ) {
     const expiresIn = (this.config.get<string>('JWT_EXPIRES_IN') ??
       '7d') as StringValue;
-    return this.jwtService.signAsync({ sub: userId, email }, { expiresIn });
+    return this.jwtService.signAsync(
+      { sub: userId, email, role },
+      { expiresIn },
+    );
   }
 }

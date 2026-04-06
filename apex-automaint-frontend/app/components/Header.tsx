@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
 import { useLanguage } from '../context/LanguageContext';
@@ -13,10 +13,11 @@ interface HeaderProps {
   hideMainHeader?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ onBookClick, forceDarkHeader, showTopBannerOnMobile, hideMainHeader }) => {
-  const { t, language, setLanguage } = useLanguage();
+const Header: React.FC<HeaderProps> = ({ onBookClick, forceDarkHeader, showTopBannerOnMobile: _showTopBannerOnMobile, hideMainHeader }) => {
+  const { t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  void _showTopBannerOnMobile;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,49 +37,14 @@ const Header: React.FC<HeaderProps> = ({ onBookClick, forceDarkHeader, showTopBa
 
   return (
     <>
-      {/* Top Banner - Sleek Dark */}
-      <div className={`${showTopBannerOnMobile ? 'fixed top-0 left-0 right-0 z-50' : ''} bg-dark text-white text-[10px] uppercase tracking-widest py-2 ${showTopBannerOnMobile ? 'block' : 'hidden md:block'} border-b border-white/10`}>
-        <div className="container flex justify-between items-center">
-          <span className="opacity-80">{t.topBanner.text}</span>
-          <div className="flex items-center gap-4">
-            <a href="tel:+971523524196" className="hover:text-gold transition-colors flex items-center gap-2">
-              <Phone size={12} /> +971523524196
-            </a>
-            <div className="h-3 w-px bg-white/20"></div>
-            <a href="tel:+971522581990" className="hover:text-gold transition-colors flex items-center gap-2">
-              <Phone size={12} /> +971 52 258 1990
-            </a>
-            <div className="h-3 w-px bg-white/20"></div>
-            <button 
-              onClick={() => setLanguage('en')}
-              className={`transition-colors font-bold ${language === 'en' ? 'text-gold' : 'opacity-50 hover:opacity-100'}`}
-            >
-              EN
-            </button>
-            <button 
-              onClick={() => setLanguage('ar')}
-              className={`transition-colors font-bold ${language === 'ar' ? 'text-gold' : 'opacity-50 hover:opacity-100'}`}
-            >
-              AR
-            </button>
-            <button 
-              onClick={() => setLanguage('ru')}
-              className={`transition-colors font-bold ${language === 'ru' ? 'text-gold' : 'opacity-50 hover:opacity-100'}`}
-            >
-              RU
-            </button>
-          </div>
-        </div>
-      </div>
-
       {!hideMainHeader && (
         <header 
-          className={`fixed left-0 right-0 z-50 transition-all duration-300 ${showTopBannerOnMobile ? 'top-8' : 'top-0'} ${
+          className={`fixed left-0 right-0 z-40 transition-all duration-300 top-8 ${
             forceDarkHeader
               ? 'bg-dark/95 backdrop-blur-md shadow-sm py-4 border-b border-white/10'
               : (isScrolled || isMenuOpen 
                 ? 'bg-white/90 backdrop-blur-md shadow-sm py-4 border-b border-gray-100' 
-                : 'bg-transparent py-6 md:top-8')
+                : 'bg-transparent py-6')
           }`}
         >
           <div className="container flex justify-between items-center">
@@ -170,12 +136,6 @@ const Header: React.FC<HeaderProps> = ({ onBookClick, forceDarkHeader, showTopBa
                   className="mt-4 px-8 py-3 bg-gold text-dark font-bold uppercase tracking-widest text-sm hover:bg-gold-hover transition-colors">
                   {t.nav.book}
                 </button>
-                
-                <div className="absolute bottom-10 flex gap-6 text-dark opacity-50 font-bold">
-                  <span onClick={() => setLanguage('en')} className={language === 'en' ? 'text-gold' : ''}>EN</span>
-                  <span onClick={() => setLanguage('ar')} className={language === 'ar' ? 'text-gold' : ''}>AR</span>
-                  <span onClick={() => setLanguage('ru')} className={language === 'ru' ? 'text-gold' : ''}>RU</span>
-                </div>
               </motion.div>
             )}
           </AnimatePresence>

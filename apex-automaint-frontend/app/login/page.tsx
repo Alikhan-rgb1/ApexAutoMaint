@@ -80,7 +80,14 @@ export default function LoginPage() {
                     if (data?.accessToken) {
                       localStorage.setItem('auth_token', data.accessToken);
                     }
-                    window.location.href = '/cabinet';
+                    const role = data?.user?.role;
+                    if (role === 'admin') {
+                      window.location.href = '/admin/dashboard';
+                    } else if (role === 'mechanic') {
+                      window.location.href = '/admin/orders';
+                    } else {
+                      window.location.href = '/portal/dashboard';
+                    }
                   } catch {
                     setStatus('error');
                     setErrorText('Login failed');

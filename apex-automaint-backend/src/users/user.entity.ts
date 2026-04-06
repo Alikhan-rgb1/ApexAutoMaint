@@ -8,6 +8,8 @@ import {
 
 @Entity({ name: 'users' })
 export class User {
+  static Roles = ['client', 'mechanic', 'admin'] as const;
+
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
@@ -23,6 +25,14 @@ export class User {
 
   @Column({ type: 'varchar', length: 200 })
   passwordHash!: string;
+
+  @Column({
+    type: 'enum',
+    enum: User.Roles,
+    enumName: 'user_role_enum',
+    default: 'client',
+  })
+  role!: (typeof User.Roles)[number];
 
   @Column({ type: 'varchar', length: 100, nullable: true })
   carMake!: string | null;

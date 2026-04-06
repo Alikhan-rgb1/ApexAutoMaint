@@ -19,11 +19,26 @@ export class UsersService {
     return this.usersRepo.findOne({ where: { id } });
   }
 
+  async listUsers(search?: string) {
+    const qb = this.usersRepo
+      .createQueryBuilder('u')
+      .orderBy('u.createdAt', 'DESC');
+    if (search && search.trim()) {
+      const q = `%${search.trim().toLowerCase()}%`;
+      qb.where(
+        'LOWER(u.name) LIKE :q OR LOWER(u.email) LIKE :q OR LOWER(u.phone) LIKE :q',
+        { q },
+      );
+    }
+    return qb.getMany();
+  }
+
   async createUser(params: {
     email: string;
     name: string;
     phone: string;
     passwordHash: string;
+    role?: User['role'];
     carMake?: string;
     carModel?: string;
     carYear?: number;
@@ -37,6 +52,7 @@ export class UsersService {
       name: params.name,
       phone: params.phone,
       passwordHash: params.passwordHash,
+      role: params.role ?? 'client',
       carMake: params.carMake ?? null,
       carModel: params.carModel ?? null,
       carYear: params.carYear ?? null,

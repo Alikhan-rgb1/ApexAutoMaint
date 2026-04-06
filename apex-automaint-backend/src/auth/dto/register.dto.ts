@@ -23,15 +23,18 @@ export class RegisterDto {
   password!: string;
 
   @IsString()
-  carMake!: string;
+  @IsOptional()
+  carMake?: string;
 
   @IsString()
-  carModel!: string;
+  @IsOptional()
+  carModel?: string;
 
   @IsInt()
+  @IsOptional()
   @Min(1980)
   @Max(new Date().getFullYear() + 1)
-  carYear!: number;
+  carYear?: number;
 
   @IsString()
   @IsOptional()

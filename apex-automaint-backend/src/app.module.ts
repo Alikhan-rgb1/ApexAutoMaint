@@ -1,18 +1,24 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { CreateUsers20260405141000 } from './migrations/20260405141000-create-users';
+import { AddDomainTables20260406153000 } from './migrations/20260406153000-add-domain-tables';
+import { NotificationsModule } from './notifications/notifications.module';
+import { ServiceOrdersModule } from './orders/service-orders.module';
 import { S3Module } from './s3/s3.module';
 import { UsersModule } from './users/users.module';
+import { VehiclesModule } from './vehicles/vehicles.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
@@ -45,12 +51,18 @@ import { UsersModule } from './users/users.module';
           autoLoadEntities: true,
           synchronize: config.get<string>('DB_SYNCHRONIZE') === 'true',
           migrationsRun: true,
-          migrations: [CreateUsers20260405141000],
+          migrations: [
+            CreateUsers20260405141000,
+            AddDomainTables20260406153000,
+          ],
         };
       },
     }),
     UsersModule,
     AuthModule,
+    VehiclesModule,
+    ServiceOrdersModule,
+    NotificationsModule,
     S3Module,
   ],
   controllers: [AppController],
