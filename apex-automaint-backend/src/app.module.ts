@@ -12,6 +12,7 @@ import { ServiceOrdersModule } from './orders/service-orders.module';
 import { S3Module } from './s3/s3.module';
 import { UsersModule } from './users/users.module';
 import { VehiclesModule } from './vehicles/vehicles.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -60,6 +61,7 @@ import { VehiclesModule } from './vehicles/vehicles.module';
     }),
     UsersModule,
     AuthModule,
+    SeedModule,
     VehiclesModule,
     ServiceOrdersModule,
     NotificationsModule,

@@ -60,4 +60,39 @@ export class UsersService {
     });
     return this.usersRepo.save(user);
   }
+
+  async upsertSeedUser(params: {
+    email: string;
+    name: string;
+    phone: string;
+    passwordHash: string;
+    role: User['role'];
+    updateExisting: boolean;
+  }) {
+    const existing = await this.findByEmail(params.email);
+    if (!existing) {
+      const user = this.usersRepo.create({
+        email: params.email,
+        name: params.name,
+        phone: params.phone,
+        passwordHash: params.passwordHash,
+        role: params.role,
+        carMake: null,
+        carModel: null,
+        carYear: null,
+        serviceType: null,
+      });
+      return this.usersRepo.save(user);
+    }
+
+    if (!params.updateExisting) return existing;
+
+    const updated = this.usersRepo.merge(existing, {
+      name: params.name,
+      phone: params.phone,
+      passwordHash: params.passwordHash,
+      role: params.role,
+    });
+    return this.usersRepo.save(updated);
+  }
 }
