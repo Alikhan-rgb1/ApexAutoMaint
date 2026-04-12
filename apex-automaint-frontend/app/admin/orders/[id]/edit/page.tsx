@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 
 import { useLanguage } from '../../../../context/LanguageContext';
-import { api } from '../../../../lib/api';
+import { api } from '@/app/lib/api';
 import { useApiSWR } from '../../../../lib/swr';
 
 type Vehicle = { id: string; make: string; model: string; year: number };

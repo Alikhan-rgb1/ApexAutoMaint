@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 import { useLanguage } from '../../../context/LanguageContext';
 import { getLocale } from '../../../lib/locale';
-import { api } from '../../../lib/api';
+import { api } from '@/app/lib/api';
 import { useApiSWR } from '../../../lib/swr';
 
 type ItemDraft = {
