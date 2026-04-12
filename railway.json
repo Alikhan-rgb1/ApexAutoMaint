@@ -6,7 +6,6 @@
       "providers": ["node"],
       "phases": {
         "install": {
-          "nixPkgs": ["nodejs_20"],
           "cmds": ["cd apex-automaint-backend && npm ci"]
         },
         "build": {
