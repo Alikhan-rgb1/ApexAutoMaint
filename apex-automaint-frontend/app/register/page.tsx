@@ -4,6 +4,28 @@ import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { api } from '../lib/api';
+import axios from 'axios';
+
+type RegisterResponse = {
+  accessToken?: string;
+};
+
+function getErrorMessage(e: unknown, fallback: string) {
+  if (axios.isAxiosError(e)) {
+    const data = e.response?.data;
+    if (typeof data === 'string') return data;
+    if (typeof data === 'object' && data !== null) {
+      const msg = (data as { message?: unknown }).message;
+      if (typeof msg === 'string') return msg;
+      if (Array.isArray(msg) && msg.every((v) => typeof v === 'string'))
+        return msg.join(', ');
+      const error = (data as { error?: unknown }).error;
+      if (typeof error === 'string') return error;
+    }
+  }
+  return fallback;
+}
 
 export default function RegisterPage() {
   const { t, language } = useLanguage();
@@ -97,32 +119,16 @@ export default function RegisterPage() {
                       email,
                       password,
                     };
-                    const res = await fetch('/api/auth/register', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(payload),
-                    });
-                    const data = await res.json().catch(() => null);
-                    if (!res.ok) {
-                      setStatus('error');
-                      const msg =
-                        data?.message ??
-                        data?.error ??
-                        (typeof data === 'string' ? data : null) ??
-                        'Registration failed';
-                      setErrorText(Array.isArray(msg) ? msg.join(', ') : msg);
-                      return;
-                    }
-                    if (data?.accessToken) {
-                      localStorage.setItem('auth_token', data.accessToken);
-                    }
+                    const res = await api.post('/auth/register', payload);
+                    const data = res.data as RegisterResponse;
+                    if (data.accessToken) localStorage.setItem('auth_token', data.accessToken);
                     setStatus('success');
                     setTimeout(() => {
                       window.location.href = '/portal/dashboard';
                     }, 1000);
-                  } catch {
+                  } catch (e: unknown) {
                     setStatus('error');
-                    setErrorText('Registration failed');
+                    setErrorText(getErrorMessage(e, 'Registration failed'));
                   }
                 }}
                 className="space-y-6"

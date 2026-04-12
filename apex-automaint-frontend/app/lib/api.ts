@@ -1,7 +1,18 @@
 import axios from 'axios';
 
+function normalizeBaseUrl(url: string) {
+  return url.replace(/\/+$/, '');
+}
+
+function getBaseUrl() {
+  const publicUrl =
+    process.env.NEXT_PUBLIC_BACKEND_URL ?? process.env.NEXT_PUBLIC_API_URL;
+  if (publicUrl && publicUrl.trim()) return normalizeBaseUrl(publicUrl.trim());
+  return '/api';
+}
+
 export const api = axios.create({
-  baseURL: '/api',
+  baseURL: getBaseUrl(),
 });
 
 api.interceptors.request.use((config) => {
@@ -14,4 +25,3 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
-

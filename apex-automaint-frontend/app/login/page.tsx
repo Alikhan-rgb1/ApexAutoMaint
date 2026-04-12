@@ -4,6 +4,29 @@ import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { api } from '../lib/api';
+import axios from 'axios';
+
+type LoginResponse = {
+  accessToken?: string;
+  user?: { role?: 'client' | 'mechanic' | 'admin' };
+};
+
+function getErrorMessage(e: unknown, fallback: string) {
+  if (axios.isAxiosError(e)) {
+    const data = e.response?.data;
+    if (typeof data === 'string') return data;
+    if (typeof data === 'object' && data !== null) {
+      const msg = (data as { message?: unknown }).message;
+      if (typeof msg === 'string') return msg;
+      if (Array.isArray(msg) && msg.every((v) => typeof v === 'string'))
+        return msg.join(', ');
+      const error = (data as { error?: unknown }).error;
+      if (typeof error === 'string') return error;
+    }
+  }
+  return fallback;
+}
 
 export default function LoginPage() {
   const { t, language } = useLanguage();
@@ -66,21 +89,10 @@ export default function LoginPage() {
                   setStatus('submitting');
                   setErrorText('');
                   try {
-                    const res = await fetch('/api/auth/login', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ email, password }),
-                    });
-                    const data = await res.json().catch(() => null);
-                    if (!res.ok) {
-                      setStatus('error');
-                      setErrorText(data?.message ?? data?.error ?? 'Login failed');
-                      return;
-                    }
-                    if (data?.accessToken) {
-                      localStorage.setItem('auth_token', data.accessToken);
-                    }
-                    const role = data?.user?.role;
+                    const res = await api.post('/auth/login', { email, password });
+                    const data = res.data as LoginResponse;
+                    if (data.accessToken) localStorage.setItem('auth_token', data.accessToken);
+                    const role = data.user?.role;
                     if (role === 'admin') {
                       window.location.href = '/admin/dashboard';
                     } else if (role === 'mechanic') {
@@ -88,9 +100,9 @@ export default function LoginPage() {
                     } else {
                       window.location.href = '/portal/dashboard';
                     }
-                  } catch {
+                  } catch (e: unknown) {
                     setStatus('error');
-                    setErrorText('Login failed');
+                    setErrorText(getErrorMessage(e, 'Login failed'));
                   } finally {
                     setStatus((prev) => (prev === 'error' ? 'error' : 'idle'));
                   }
