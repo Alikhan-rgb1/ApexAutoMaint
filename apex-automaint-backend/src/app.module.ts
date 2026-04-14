@@ -13,6 +13,7 @@ import { S3Module } from './s3/s3.module';
 import { UsersModule } from './users/users.module';
 import { VehiclesModule } from './vehicles/vehicles.module';
 import { SeedModule } from './seed/seed.module';
+import { MondayModule } from './monday/monday.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { SeedModule } from './seed/seed.module';
     ServiceOrdersModule,
     NotificationsModule,
     S3Module,
+    MondayModule,
   ],
   controllers: [AppController],
   providers: [AppService],

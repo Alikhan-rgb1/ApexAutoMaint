@@ -46,6 +46,10 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
             href: '/portal/vehicles',
             label: t.portal.nav.vehicles,
           },
+          {
+            href: '/portal/lifts',
+            label: t.portal.nav.lifts,
+          },
         ]
       : []),
     {

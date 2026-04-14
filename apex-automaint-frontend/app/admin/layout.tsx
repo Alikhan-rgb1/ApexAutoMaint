@@ -39,8 +39,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       ? [
           { href: '/admin/dashboard', label: t.admin.nav.dashboard },
           { href: '/admin/orders', label: t.admin.nav.orders },
+          { href: '/admin/lifts', label: t.admin.nav.lifts },
         ]
-      : [{ href: '/admin/orders', label: t.admin.nav.orders }];
+      : [
+          { href: '/admin/orders', label: t.admin.nav.orders },
+          { href: '/admin/lifts', label: t.admin.nav.lifts },
+        ];
 
   return (
     <div className="min-h-screen bg-dark text-white pt-8">
