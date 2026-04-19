@@ -1,4 +1,5 @@
 "use client";
+import type { Metadata } from 'next';
 import { Poppins, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -16,6 +17,12 @@ const playfairDisplay = Playfair_Display({
   weight: ["700", "800", "900"],
   variable: "--font-playfair-display",
 });
+
+export const metadata: Metadata = {
+  title: 'AlwakeelAutoMaint',
+  description:
+    'ALWAKEEL AUTO MAINT — modern black-and-blue auto service for diagnostics, repairs, body work, and paint.',
+};
 
 export default function RootLayout({
   children,
