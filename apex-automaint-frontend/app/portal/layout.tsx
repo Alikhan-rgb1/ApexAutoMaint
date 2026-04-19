@@ -63,7 +63,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
       <div className="bg-dark border-b border-white/10">
         <div className="container py-4 flex items-center justify-between gap-6">
           <Link href="/" className="font-serif text-xl font-black text-white">
-            ApexAuto<span className="text-gold">Maint</span>
+            ALWAKEEL <span className="text-gold">AUTO MAINT</span>
           </Link>
           <nav className="flex items-center gap-2 overflow-x-auto">
             {nav.map((i) => (

@@ -275,13 +275,13 @@ export default function RegisterPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent" />
               <div className="relative z-10 h-full p-10 flex flex-col justify-end">
                 <div className="text-gold text-xs font-bold uppercase tracking-[0.2em] mb-4">
-                  ApexAutoMaint
+                  ALWAKEEL AUTO MAINT
                 </div>
                 <div className="text-3xl font-serif font-black leading-tight mb-4">
-                  Start your journey, <br /> with premium care.
+                  Join the workshop, <br /> built on trust.
                 </div>
                 <div className="text-sm text-gray-300 max-w-sm">
-                  Create an account to manage bookings and receive service updates.
+                  Create an account to manage bookings, lift activity, and service updates.
                 </div>
               </div>
             </div>

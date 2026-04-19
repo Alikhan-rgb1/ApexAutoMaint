@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ onBookClick, forceDarkHeader, showTopBa
               <span className={`font-serif text-2xl md:text-3xl font-black tracking-tight transition-colors duration-300 ${
                 forceDarkHeader ? 'text-white' : ((isScrolled || isMenuOpen) ? 'text-dark' : 'text-white')
               }`}>
-                ApexAuto<span className="text-gold">Maint</span>
+                ALWAKEEL <span className="text-gold">AUTO MAINT</span>
               </span>
             </Link>
 

@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #d4af37;
-  --color-gold-hover: #b8941f;
-  --color-dark: #0a0a0a;
-  --color-dark-lighter: #1a1a1a;
-  --color-light-bg: #f5f5f5;
-  --color-border: #e0e0e0;
+  --color-gold: #22a8ff;
+  --color-gold-hover: #0b86d8;
+  --color-dark: #060b12;
+  --color-dark-lighter: #0f1724;
+  --color-light-bg: #eef7ff;
+  --color-border: #cfe7ff;
   
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair-display), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -21,8 +21,8 @@
 
 /* Base Styles */
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
+  --background: #f5fbff;
+  --foreground: #0f1724;
 }
 
 html {
@@ -31,9 +31,21 @@ html {
 }
 
 body {
+  background-image:
+    radial-gradient(circle at top right, rgba(34, 168, 255, 0.08), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(11, 134, 216, 0.06), transparent 24%);
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* Typography Defaults */

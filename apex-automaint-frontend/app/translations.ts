@@ -19,7 +19,7 @@ export const translations = {
       title1: 'Excellence in',
       title2: 'Automotive',
       title3: 'Maintenance.',
-      description: 'Experience the pinnacle of car care with our ISO 9001 certified services. From precision diagnostics to luxury detailing, we ensure your vehicle performs at its peak.',
+      description: 'ALWAKEEL AUTO MAINT delivers reliable workshop service, diagnostics, paint work, and maintenance with a modern black-and-blue identity built on trust.',
       bookBtn: 'Book Service',
       exploreBtn: 'Explore Services',
       stats: {
@@ -53,7 +53,7 @@ export const translations = {
       served: 'Served Clients',
       subtitle: 'Why Choose Us',
       title: 'Your Peace of Mind is Our Priority',
-      desc: "ApexAutoMaint is not just a garage; it's a commitment to excellence. Our team of experienced and certified technicians use the latest tools and technology to ensure your vehicle is in safe hands. We believe in transparency, quality, and customer satisfaction above all else.",
+      desc: "ALWAKEEL AUTO MAINT is more than a garage. It's a disciplined workshop focused on clear communication, reliable repairs, and professional care for every vehicle.",
       features: [
         "ISO 9001:2015 Certified Facility",
         "Latest Diagnostic Technology",
@@ -78,7 +78,7 @@ export const translations = {
       ]
     },
     cta: {
-      title: 'Ready to Experience the Apex Difference?',
+      title: 'Ready for the ALWAKEEL Difference?',
       desc: 'Contact us today for a free consultation and let our experts take care of your car with the precision it deserves.',
       callBtn: 'Call Us Now',
       bookBtn: 'Book Appointment'
@@ -96,7 +96,7 @@ export const translations = {
       phone: 'Phone',
       email: 'Email',
       hours: 'Working Hours',
-      hoursVal: 'Mon - Sat: 8:00 AM - 7:00 PM',
+      hoursVal: 'Sat - Thu: 09:00 AM - 09:00 PM, Fri off',
       form: {
         name: 'Name',
         namePh: 'Your Full Name',
@@ -128,14 +128,14 @@ export const translations = {
       successDesc: "We'll contact you shortly to confirm the details."
     },
     footer: {
-      desc: 'Premium automotive care center in Dubai. ISO 9001 Certified quality you can trust.',
+      desc: 'ALWAKEEL AUTO MAINT is a black-and-blue modern workshop experience focused on maintenance, diagnostics, bodywork, and trust.',
       links: 'Quick Links',
       newsletter: 'Newsletter',
       subscribe: 'Subscribe to get latest offers and maintenance tips.',
       emailPh: 'Your Email',
       join: 'Join',
       contact: 'Contact Info',
-      rights: '© 2024 ApexAutoMaint. All rights reserved.',
+      rights: '© 2024 ALWAKEEL AUTO MAINT. All rights reserved.',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service'
     },
@@ -419,7 +419,7 @@ export const translations = {
       served: 'عميل تم خدمتهم',
       subtitle: 'لماذا تختارنا',
       title: 'راحة بالك هي أولويتنا',
-      desc: "أبيكس أوتو مينت ليس مجرد ورشة؛ إنه التزام بالتميز. يستخدم فريقنا من الفنيين ذوي الخبرة والمعتمدين أحدث الأدوات والتقنيات لضمان أن سيارتك في أيد أمينة. نحن نؤمن بالشفافية والجودة ورضا العملاء قبل كل شيء.",
+      desc: "ALWAKEEL AUTO MAINT ليست مجرد ورشة؛ بل منظومة عمل تركز على الثقة، والدقة، والوضوح، وجودة التنفيذ في كل خدمة للسيارة.",
       features: [
         "منشأة معتمدة ISO 9001:2015",
         "أحدث تقنيات التشخيص",
@@ -444,7 +444,7 @@ export const translations = {
       ]
     },
     cta: {
-      title: 'جاهز لتجربة تميز أبيكس؟',
+      title: 'جاهز لتجربة ALWAKEEL AUTO MAINT؟',
       desc: 'اتصل بنا اليوم للحصول على استشارة مجانية ودع خبراءنا يعتنون بسيارتك بالدقة التي تستحقها.',
       callBtn: 'اتصل بنا الآن',
       bookBtn: 'احجز موعد'
@@ -462,7 +462,7 @@ export const translations = {
       phone: 'الهاتف',
       email: 'البريد الإلكتروني',
       hours: 'ساعات العمل',
-      hoursVal: 'السبت - الخميس: 8:00 ص - 7:00 م',
+      hoursVal: 'السبت - الخميس: 09:00 ص - 09:00 م، الجمعة إجازة',
       form: {
         name: 'الاسم',
         namePh: 'اسمك الكامل',
@@ -494,14 +494,14 @@ export const translations = {
       successDesc: "سنتصل بك قريباً لتأكيد التفاصيل."
     },
     footer: {
-      desc: 'مركز عناية بالسيارات فاخر في دبي. جودة معتمدة ISO 9001 يمكنك الوثوق بها.',
+      desc: 'ALWAKEEL AUTO MAINT ورشة حديثة بهوية سوداء وزرقاء، متخصصة في الصيانة، الفحص، السمكرة، والدهان باحترافية عالية.',
       links: 'روابط سريعة',
       newsletter: 'النشرة البريدية',
       subscribe: 'اشترك للحصول على أحدث العروض ونصائح الصيانة.',
       emailPh: 'بريدك الإلكتروني',
       join: 'اشتراك',
       contact: 'معلومات الاتصال',
-      rights: '© 2024 أبيكس أوتو مينت. جميع الحقوق محفوظة.',
+      rights: '© 2024 ALWAKEEL AUTO MAINT. جميع الحقوق محفوظة.',
       privacy: 'سياسة الخصوصية',
       terms: 'شروط الخدمة'
     },
@@ -785,7 +785,7 @@ export const translations = {
       served: 'Обслужено клиентов',
       subtitle: 'Почему мы',
       title: 'Ваше спокойствие — наш приоритет',
-      desc: "ApexAutoMaint — это не просто гараж, это приверженность совершенству. Наша команда опытных сертифицированных техников использует новейшие инструменты и технологии, чтобы гарантировать безопасность вашего авто. Мы верим в прозрачность, качество и удовлетворенность клиентов превыше всего.",
+      desc: "ALWAKEEL AUTO MAINT — это не просто сервис. Это современная мастерская с чёткими процессами, честной коммуникацией и надёжным качеством работ для каждого автомобиля.",
       features: [
         "Сертифицированный центр ISO 9001:2015",
         "Новейшие технологии диагностики",
@@ -810,7 +810,7 @@ export const translations = {
       ]
     },
     cta: {
-      title: 'Готовы почувствовать разницу?',
+      title: 'Готовы к сервису от ALWAKEEL AUTO MAINT?',
       desc: 'Свяжитесь с нами сегодня для бесплатной консультации, и позвольте экспертам позаботиться о вашем авто.',
       callBtn: 'Позвонить',
       bookBtn: 'Записаться'
@@ -828,7 +828,7 @@ export const translations = {
       phone: 'Телефон',
       email: 'Email',
       hours: 'Часы работы',
-      hoursVal: 'Пн - Сб: 8:00 - 19:00',
+      hoursVal: 'Сб - Чт: 09:00 - 21:00, Пт выходной',
       form: {
         name: 'Имя',
         namePh: 'Ваше полное имя',
@@ -860,14 +860,14 @@ export const translations = {
       successDesc: "Мы свяжемся с вами в ближайшее время для уточнения деталей."
     },
     footer: {
-      desc: 'Премиальный автосервис в Дубае. Качество, подтвержденное ISO 9001.',
+      desc: 'ALWAKEEL AUTO MAINT — современный автосервис в черно-голубом стиле: диагностика, ремонт, кузовные работы и покраска.',
       links: 'Быстрые ссылки',
       newsletter: 'Рассылка',
       subscribe: 'Подпишитесь, чтобы получать последние предложения и советы по обслуживанию.',
       emailPh: 'Ваш Email',
       join: 'Подписаться',
       contact: 'Контакты',
-      rights: '© 2024 ApexAutoMaint. Все права защищены.',
+      rights: '© 2024 ALWAKEEL AUTO MAINT. Все права защищены.',
       privacy: 'Политика конфиденциальности',
       terms: 'Условия обслуживания'
     },

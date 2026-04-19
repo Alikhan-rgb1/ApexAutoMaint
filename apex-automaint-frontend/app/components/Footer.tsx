@@ -15,7 +15,7 @@ const Footer = () => {
           <div className="space-y-6">
             <Link href="/" className="inline-block">
               <span className="font-serif text-3xl font-black tracking-tight">
-                ApexAuto<span className="text-gold">Maint</span>
+                ALWAKEEL <span className="text-gold">AUTO MAINT</span>
               </span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">

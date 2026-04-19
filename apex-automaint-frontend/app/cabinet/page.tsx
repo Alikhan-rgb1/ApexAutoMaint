@@ -62,7 +62,7 @@ export default function CabinetPage() {
           <div className="flex items-end justify-between gap-6 mb-10">
             <div>
               <div className="text-gold text-xs font-bold uppercase tracking-[0.2em] mb-3">
-                ApexAutoMaint
+                ALWAKEEL AUTO MAINT
               </div>
               <h1 className="text-3xl md:text-4xl font-serif font-black">
                 {title}

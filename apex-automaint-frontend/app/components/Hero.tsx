@@ -25,7 +25,7 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"></div>
 
-      <div className="container relative z-10 pt-20">
+      <div className="container relative z-10 pt-32 md:pt-36 lg:pt-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           
           {/* Content */}
@@ -55,7 +55,7 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
               {t.hero.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 mb-6 md:mb-8">
               <button 
                 onClick={onBookClick}
                 className="px-8 py-4 bg-gold text-dark font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors duration-300 flex items-center justify-center gap-2 group"

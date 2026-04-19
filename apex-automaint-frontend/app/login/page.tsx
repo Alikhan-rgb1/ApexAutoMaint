@@ -173,13 +173,13 @@ export default function LoginPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent" />
               <div className="relative z-10 h-full p-10 flex flex-col justify-end">
                 <div className="text-gold text-xs font-bold uppercase tracking-[0.2em] mb-4">
-                  ApexAutoMaint
+                  ALWAKEEL AUTO MAINT
                 </div>
                 <div className="text-3xl font-serif font-black leading-tight mb-4">
-                  Premium auto care, <br /> built on trust.
+                  Trusted service, <br /> modern precision.
                 </div>
                 <div className="text-sm text-gray-300 max-w-sm">
-                  Book service, track appointments, and get updates — all in one place.
+                  Book service, track progress, and manage your vehicles in one secure portal.
                 </div>
               </div>
             </div>
