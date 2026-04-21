@@ -104,6 +104,13 @@ export class ServiceOrdersService {
     );
     await this.itemsRepo.save(items);
 
+    await this.createOrderInAppNotification(
+      order.userId,
+      order.vehicleId,
+      'order_created',
+      `Ваш заказ создан: ${vehicle.make} ${vehicle.model} (${vehicle.year}).`,
+    );
+
     return this.ordersRepo.findOne({
       where: { id: order.id },
       relations: { vehicle: true, items: true, user: true },
@@ -125,6 +132,26 @@ export class ServiceOrdersService {
 
     const saved = await this.ordersRepo.save(order);
 
+    if (dto.status !== undefined && prevStatus !== saved.status) {
+      const vehicle = await this.vehiclesRepo.findOne({
+        where: { id: saved.vehicleId },
+      });
+      if (vehicle) {
+        const message = this.getOrderStatusMessage(
+          saved.status,
+          vehicle.make,
+          vehicle.model,
+          vehicle.year,
+        );
+        await this.createOrderInAppNotification(
+          saved.userId,
+          saved.vehicleId,
+          `order_${saved.status}`,
+          message,
+        );
+      }
+    }
+
     if (
       prevStatus !== ServiceOrderStatuses[2] &&
       saved.status === ServiceOrderStatuses[2]
@@ -136,6 +163,40 @@ export class ServiceOrdersService {
       where: { id: saved.id },
       relations: { vehicle: true, items: true, user: true },
     });
+  }
+
+  private getOrderStatusMessage(
+    status: (typeof ServiceOrderStatuses)[number],
+    make: string,
+    model: string,
+    year: number,
+  ) {
+    const car = `${make} ${model} (${year})`;
+    if (status === 'pending')
+      return `Ваш заказ принят и ожидает начала работ: ${car}.`;
+    if (status === 'in_progress') return `Ваш заказ в работе: ${car}.`;
+    if (status === 'completed') return `Ваш заказ завершён: ${car}.`;
+    if (status === 'cancelled') return `Ваш заказ отменён: ${car}.`;
+    return `Статус заказа обновлён: ${car}.`;
+  }
+
+  private async createOrderInAppNotification(
+    userId: string,
+    vehicleId: string,
+    type: string,
+    message: string,
+  ) {
+    await this.notificationsRepo.save(
+      this.notificationsRepo.create({
+        userId,
+        vehicleId,
+        type,
+        channel: 'in_app',
+        message,
+        isSent: false,
+        scheduledAt: new Date(),
+      }),
+    );
   }
 
   private async createCompletionNotification(orderId: string) {

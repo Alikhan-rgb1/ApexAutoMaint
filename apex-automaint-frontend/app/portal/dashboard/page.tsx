@@ -20,7 +20,15 @@ type Order = {
   vehicle?: Vehicle;
   items?: OrderItem[];
 };
-type Notification = { id: string; type: string; message: string; scheduledAt: string; isSent: boolean };
+type Notification = {
+  id: string;
+  type: string;
+  channel?: string;
+  message: string;
+  scheduledAt: string;
+  createdAt?: string;
+  isSent: boolean;
+};
 
 function formatDate(value: string, locale: string) {
   const d = new Date(value);
@@ -37,7 +45,24 @@ export default function DashboardPage() {
 
   const userName = me.data?.user?.name ?? 'Client';
   const lastOrder = orders.data?.[0];
-  const upcoming = (notifications.data ?? []).filter((n) => !n.isSent).slice(0, 5);
+  const upcoming = (() => {
+    const list = (notifications.data ?? []).filter((n) => !n.isSent);
+    const inApp = list
+      .filter((n) => (n.channel ?? '') === 'in_app')
+      .sort((a, b) => {
+        const aT = Date.parse(a.createdAt ?? a.scheduledAt);
+        const bT = Date.parse(b.createdAt ?? b.scheduledAt);
+        return bT - aT;
+      });
+    const other = list
+      .filter((n) => (n.channel ?? '') !== 'in_app')
+      .sort((a, b) => {
+        const aT = Date.parse(a.scheduledAt);
+        const bT = Date.parse(b.scheduledAt);
+        return aT - bT;
+      });
+    return [...inApp, ...other].slice(0, 5);
+  })();
 
   return (
     <div className="space-y-8">
@@ -158,7 +183,12 @@ export default function DashboardPage() {
             {upcoming.map((n) => (
               <div key={n.id} className="border border-white/10 rounded-xl p-4">
                 <div className="text-white font-semibold">
-                  {formatDate(n.scheduledAt, locale)}
+                  {formatDate(
+                    n.channel === 'in_app'
+                      ? n.createdAt ?? n.scheduledAt
+                      : n.scheduledAt,
+                    locale,
+                  )}
                 </div>
                 <div className="text-gray-400 text-sm mt-1">
                   {n.message}
