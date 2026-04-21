@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import type { AuthUser } from '../auth/auth.types';
+import { Notification } from '../notifications/notification.entity.js';
+import { Vehicle } from '../vehicles/vehicle.entity.js';
 import { VehiclesService } from '../vehicles/vehicles.service';
 import { Lift } from './lift.entity';
 import { CreateLiftDto } from './dto/create-lift.dto';
@@ -13,6 +15,10 @@ export class LiftsService {
   constructor(
     @InjectRepository(Lift)
     private readonly liftsRepo: Repository<Lift>,
+    @InjectRepository(Vehicle)
+    private readonly vehiclesRepo: Repository<Vehicle>,
+    @InjectRepository(Notification)
+    private readonly notificationsRepo: Repository<Notification>,
     private readonly vehicles: VehiclesService,
   ) {}
 
@@ -64,6 +70,9 @@ export class LiftsService {
     const lift = await this.liftsRepo.findOne({ where: { id } });
     if (!lift) throw new NotFoundException('Lift not found');
 
+    const prevStatus = lift.status;
+    const prevVehicleId = lift.vehicleId;
+
     if (dto.status !== undefined) lift.status = (dto.status ?? '').trim();
     if (dto.workTime !== undefined)
       lift.workTime = dto.workTime ? dto.workTime.trim() : null;
@@ -85,6 +94,61 @@ export class LiftsService {
     }
 
     await this.liftsRepo.save(lift);
+
+    const nextVehicleId = lift.vehicleId;
+    if (prevVehicleId !== nextVehicleId) {
+      if (nextVehicleId) {
+        await this.createLiftInAppNotification(nextVehicleId, {
+          type: 'lift_assigned',
+          message: (vehicleLabel) =>
+            `Ваш автомобиль ${vehicleLabel} поставлен на пост ${lift.name}.`,
+        });
+      } else if (prevVehicleId) {
+        await this.createLiftInAppNotification(prevVehicleId, {
+          type: 'lift_released',
+          message: (vehicleLabel) =>
+            `Ваш автомобиль ${vehicleLabel} снят с поста ${lift.name}.`,
+        });
+      }
+    }
+
+    if (prevStatus !== lift.status && lift.vehicleId) {
+      const statusText = (lift.status ?? '').trim();
+      if (statusText) {
+        await this.createLiftInAppNotification(lift.vehicleId, {
+          type: 'lift_status',
+          message: (vehicleLabel) =>
+            `Статус по посту ${lift.name} для ${vehicleLabel}: ${statusText}.`,
+        });
+      }
+    }
+
     return { ok: true as const };
+  }
+
+  private async createLiftInAppNotification(
+    vehicleId: string,
+    payload: {
+      type: string;
+      message: (vehicleLabel: string) => string;
+    },
+  ) {
+    const vehicle = await this.vehiclesRepo.findOne({
+      where: { id: vehicleId },
+    });
+    if (!vehicle) return;
+
+    const label = `${vehicle.make} ${vehicle.model} (${vehicle.year})`;
+    await this.notificationsRepo.save(
+      this.notificationsRepo.create({
+        userId: vehicle.userId,
+        vehicleId: vehicle.id,
+        type: payload.type,
+        channel: 'in_app',
+        message: payload.message(label),
+        isSent: false,
+        scheduledAt: new Date(),
+      }),
+    );
   }
 }

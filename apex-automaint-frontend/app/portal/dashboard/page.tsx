@@ -35,6 +35,17 @@ function formatDate(value: string, locale: string) {
   return d.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: '2-digit' });
 }
 
+function formatDateTime(value: string, locale: string) {
+  const d = new Date(value);
+  return d.toLocaleString(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
 export default function DashboardPage() {
   const { t, language } = useLanguage();
   const locale = getLocale(language);
@@ -183,7 +194,7 @@ export default function DashboardPage() {
             {upcoming.map((n) => (
               <div key={n.id} className="border border-white/10 rounded-xl p-4">
                 <div className="text-white font-semibold">
-                  {formatDate(
+                  {formatDateTime(
                     n.channel === 'in_app'
                       ? n.createdAt ?? n.scheduledAt
                       : n.scheduledAt,
