@@ -1,5 +1,6 @@
 "use client";
 import React, { useMemo } from 'react';
+import axios from 'axios';
 import toast from 'react-hot-toast';
 
 import { useApiSWR } from '../../lib/swr';
@@ -26,6 +27,30 @@ type LiftsResponse =
     }
   | { message?: string; error?: string };
 
+function getErrorText(error: unknown) {
+  if (!error) return null;
+  if (axios.isAxiosError(error)) {
+    const status = error.response?.status;
+    const data = error.response?.data as unknown;
+    const message =
+      typeof data === 'string'
+        ? data
+        : typeof data === 'object' && data
+          ? ((data as { message?: unknown; error?: unknown }).message ??
+              (data as { message?: unknown; error?: unknown }).error ??
+              null)
+          : null;
+
+    if (Array.isArray(message)) return message.join(', ');
+    if (typeof message === 'string' && message.trim()) return message;
+    if (typeof error.message === 'string' && error.message.trim())
+      return status ? `${error.message} (${status})` : error.message;
+    return status ? `Ошибка загрузки (${status})` : 'Ошибка загрузки';
+  }
+  if (error instanceof Error && error.message.trim()) return error.message;
+  return 'Ошибка загрузки';
+}
+
 function getItemStatus(item: MondayItem) {
   const v = item.status ?? '';
   return v.trim() ? v.trim() : '-';
@@ -40,7 +65,18 @@ const GROUP_ORDER = ['LIFT 1', 'LIFT 2', 'LIFT 3', 'PAINT BOOTH'] as const;
 
 export default function PortalLiftsPage() {
   const { t } = useLanguage();
-  const { data, isLoading, mutate } = useApiSWR<LiftsResponse>('/monday/lifts');
+  const lifts = useApiSWR<LiftsResponse>('/monday/lifts');
+  const { data, isLoading, mutate } = lifts;
+
+  const liftsErrorText = useMemo(() => {
+    const swrErrorText = getErrorText(lifts.error);
+    if (swrErrorText) return swrErrorText;
+    if (data && !('items' in data)) {
+      const msg = (data.message ?? data.error ?? '').toString().trim();
+      return msg ? msg : null;
+    }
+    return null;
+  }, [data, lifts.error]);
 
   const items = useMemo(() => {
     if (!data || !('items' in data)) return [];
@@ -110,6 +146,10 @@ export default function PortalLiftsPage() {
           <div className="h-10 rounded-xl bg-white/10" />
           <div className="h-10 rounded-xl bg-white/10" />
           <div className="h-10 rounded-xl bg-white/10" />
+        </div>
+      ) : liftsErrorText ? (
+        <div className="bg-dark-lighter border border-white/10 rounded-2xl p-6 text-red-200 text-sm">
+          {liftsErrorText}
         </div>
       ) : items.length === 0 ? (
         <div className="bg-dark-lighter border border-white/10 rounded-2xl p-6 text-gray-400 text-sm">
