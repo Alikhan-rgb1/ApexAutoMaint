@@ -108,8 +108,18 @@ export default function AdminLiftsPage() {
 
   const [savingStatusId, setSavingStatusId] = useState<string | null>(null);
   const [savingCarId, setSavingCarId] = useState<string | null>(null);
+  const [savingDetailsId, setSavingDetailsId] = useState<string | null>(null);
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [carDrafts, setCarDrafts] = useState<Record<string, string>>({});
+  const [workTypeDrafts, setWorkTypeDrafts] = useState<Record<string, string>>(
+    {},
+  );
+  const [workTimeDrafts, setWorkTimeDrafts] = useState<Record<string, string>>(
+    {},
+  );
+  const [mechanicDrafts, setMechanicDrafts] = useState<Record<string, string>>(
+    {},
+  );
 
   const vehicleOptions = useMemo(() => {
     const list = vehicles.data ? [...vehicles.data] : [];
@@ -123,12 +133,25 @@ export default function AdminLiftsPage() {
       drafts[item.id] !== undefined ? drafts[item.id] : currentStatus;
     const isSavingStatus = savingStatusId === item.id;
     const isSavingCar = savingCarId === item.id;
+    const isSavingDetails = savingDetailsId === item.id;
     const inferredVehicleId = item.vehicleId ?? '';
     const selectedVehicleId =
       carDrafts[item.id] !== undefined
         ? carDrafts[item.id]
         : inferredVehicleId || '';
     const carLabel = item.vehicle ? vehicleLabel(item.vehicle) : null;
+    const workTypeValue =
+      workTypeDrafts[item.id] !== undefined
+        ? workTypeDrafts[item.id]
+        : (item.workType ?? '');
+    const workTimeValue =
+      workTimeDrafts[item.id] !== undefined
+        ? workTimeDrafts[item.id]
+        : (item.workTime ?? '');
+    const mechanicValue =
+      mechanicDrafts[item.id] !== undefined
+        ? mechanicDrafts[item.id]
+        : (item.mechanic ?? '');
 
     return (
       <div key={item.id} className="border border-white/10 rounded-xl p-4">
@@ -201,6 +224,82 @@ export default function AdminLiftsPage() {
                 className="px-4 py-2 border border-white/10 text-gray-200 text-xs font-bold uppercase tracking-widest rounded hover:border-gold hover:text-gold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {t.admin.lifts.setCar}
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full">
+              <input
+                value={workTypeValue}
+                onChange={(e) =>
+                  setWorkTypeDrafts((prev) => ({
+                    ...prev,
+                    [item.id]: e.target.value,
+                  }))
+                }
+                placeholder={t.admin.lifts.workType}
+                className="bg-dark border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors w-full"
+              />
+              <input
+                value={workTimeValue}
+                onChange={(e) =>
+                  setWorkTimeDrafts((prev) => ({
+                    ...prev,
+                    [item.id]: e.target.value,
+                  }))
+                }
+                placeholder={t.admin.lifts.workTime}
+                className="bg-dark border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors w-full"
+              />
+              <input
+                value={mechanicValue}
+                onChange={(e) =>
+                  setMechanicDrafts((prev) => ({
+                    ...prev,
+                    [item.id]: e.target.value,
+                  }))
+                }
+                placeholder={t.admin.lifts.mechanic}
+                className="bg-dark border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors w-full"
+              />
+            </div>
+            <div className="flex justify-end w-full">
+              <button
+                type="button"
+                disabled={isSavingDetails}
+                onClick={async () => {
+                  setSavingDetailsId(item.id);
+                  try {
+                    await api.put(`/lifts/${item.id}`, {
+                      workType: workTypeValue ? workTypeValue : null,
+                      workTime: workTimeValue ? workTimeValue : null,
+                      mechanic: mechanicValue ? mechanicValue : null,
+                    });
+                    toast.success(t.admin.lifts.saved);
+                    setWorkTypeDrafts((prev) => {
+                      const copy = { ...prev };
+                      delete copy[item.id];
+                      return copy;
+                    });
+                    setWorkTimeDrafts((prev) => {
+                      const copy = { ...prev };
+                      delete copy[item.id];
+                      return copy;
+                    });
+                    setMechanicDrafts((prev) => {
+                      const copy = { ...prev };
+                      delete copy[item.id];
+                      return copy;
+                    });
+                    await mutate();
+                  } catch {
+                    toast.error(t.admin.lifts.saveFailed);
+                  } finally {
+                    setSavingDetailsId(null);
+                  }
+                }}
+                className="px-4 py-2 border border-white/10 text-gray-200 text-xs font-bold uppercase tracking-widest rounded hover:border-gold hover:text-gold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {t.admin.lifts.save}
               </button>
             </div>
 
