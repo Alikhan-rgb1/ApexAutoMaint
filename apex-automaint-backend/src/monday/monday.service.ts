@@ -191,6 +191,11 @@ export class MondayService {
         { boardId },
       );
       const board = data.boards?.[0];
+      if (!board) {
+        throw new BadRequestException(
+          'MONDAY_LIFTS_BOARD_ID board not found or access denied',
+        );
+      }
       const items = (board?.items_page?.items ?? []).map((item) => {
         const byId = (id: string) =>
           item.column_values.find((c) => c.id === id)?.text ?? null;
@@ -226,6 +231,11 @@ export class MondayService {
           { boardId },
         );
         const board = data.boards?.[0];
+        if (!board) {
+          throw new BadRequestException(
+            'MONDAY_LIFTS_BOARD_ID board not found or access denied',
+          );
+        }
         const items = (board?.items_page?.items ?? []).map((item) => {
           const byId = (id: string) =>
             item.column_values.find((c) => c.id === id)?.text ?? null;
@@ -261,6 +271,11 @@ export class MondayService {
             { boardId },
           );
           const board = data.boards?.[0];
+          if (!board) {
+            throw new BadRequestException(
+              'MONDAY_LIFTS_BOARD_ID board not found or access denied',
+            );
+          }
           const items = (board?.items_page?.items ?? []).map((item) => {
             const byId = (id: string) =>
               item.column_values.find((c) => c.id === id)?.text ?? null;
@@ -295,6 +310,11 @@ export class MondayService {
             { boardId },
           );
           const board = data.boards?.[0];
+          if (!board) {
+            throw new BadRequestException(
+              'MONDAY_LIFTS_BOARD_ID board not found or access denied',
+            );
+          }
           const items = (board?.items_page?.items ?? []).map((item) => {
             const byId = (id: string) =>
               item.column_values.find((c) => c.id === id)?.text ?? null;
