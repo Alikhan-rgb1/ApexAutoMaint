@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { CreateUsers20260405141000 } from './migrations/20260405141000-create-users';
 import { AddDomainTables20260406153000 } from './migrations/20260406153000-add-domain-tables';
+import { AddLifts20260421120000 } from './migrations/20260421120000-add-lifts';
 import { NotificationsModule } from './notifications/notifications.module';
 import { ServiceOrdersModule } from './orders/service-orders.module';
 import { S3Module } from './s3/s3.module';
@@ -14,6 +15,7 @@ import { UsersModule } from './users/users.module';
 import { VehiclesModule } from './vehicles/vehicles.module';
 import { SeedModule } from './seed/seed.module';
 import { MondayModule } from './monday/monday.module';
+import { LiftsModule } from './lifts/lifts.module';
 
 @Module({
   imports: [
@@ -56,6 +58,7 @@ import { MondayModule } from './monday/monday.module';
           migrations: [
             CreateUsers20260405141000,
             AddDomainTables20260406153000,
+            AddLifts20260421120000,
           ],
         };
       },
@@ -64,6 +67,7 @@ import { MondayModule } from './monday/monday.module';
     AuthModule,
     SeedModule,
     VehiclesModule,
+    LiftsModule,
     ServiceOrdersModule,
     NotificationsModule,
     S3Module,

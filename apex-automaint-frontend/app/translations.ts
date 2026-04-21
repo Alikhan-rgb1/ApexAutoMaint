@@ -233,7 +233,7 @@ export const translations = {
       },
       lifts: {
         title: 'Lifts & Workstations',
-        subtitle: 'Live status from monday.com',
+        subtitle: 'Live status of lifts & workstations',
         lift: 'Station',
         status: 'Status',
         workTime: 'Work time',
@@ -302,7 +302,7 @@ export const translations = {
       },
       lifts: {
         title: 'Lifts & Workstations',
-        subtitle: 'Manage live status from monday.com',
+        subtitle: 'Manage lifts & workstations',
         station: 'Station',
         status: 'Status',
         setStatus: 'Set status',
@@ -601,7 +601,7 @@ export const translations = {
       },
       lifts: {
         title: 'الرافعات ومحطات العمل',
-        subtitle: 'حالة مباشرة من monday.com',
+        subtitle: 'حالة مباشرة للرافعات ومحطات العمل',
         lift: 'المحطة',
         status: 'الحالة',
         workTime: 'وقت العمل',
@@ -670,7 +670,7 @@ export const translations = {
       },
       lifts: {
         title: 'الرافعات ومحطات العمل',
-        subtitle: 'إدارة الحالة المباشرة من monday.com',
+        subtitle: 'إدارة الرافعات ومحطات العمل',
         station: 'المحطة',
         status: 'الحالة',
         setStatus: 'تعيين الحالة',
@@ -969,7 +969,7 @@ export const translations = {
       },
       lifts: {
         title: 'Подъёмники и посты',
-        subtitle: 'Статусы в реальном времени из monday.com',
+        subtitle: 'Статусы подъёмников и постов в реальном времени',
         lift: 'Пост',
         status: 'Статус',
         workTime: 'Время работы',
@@ -1038,7 +1038,7 @@ export const translations = {
       },
       lifts: {
         title: 'Подъёмники и посты',
-        subtitle: 'Управление статусами из monday.com',
+        subtitle: 'Управление подъёмниками и постами',
         station: 'Пост',
         status: 'Статус',
         setStatus: 'Установить статус',

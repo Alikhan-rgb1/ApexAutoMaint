@@ -6,26 +6,17 @@ import toast from 'react-hot-toast';
 import { useApiSWR } from '../../lib/swr';
 import { useLanguage } from '../../context/LanguageContext';
 
-type MondayItem = {
+type Lift = {
   id: string;
   name: string;
-  group?: string | null;
-  status: string | null;
+  group: string;
+  status: string;
   workTime?: string | null;
   workType?: string | null;
-  car?: string | null;
   notes?: string | null;
   mechanic?: string | null;
+  vehicle?: { id: string; make: string; model: string; year: number } | null;
 };
-
-type LiftsResponse =
-  | {
-      board: { id: string; name: string } | null;
-      statusColumnId: string;
-      columns?: Record<string, string>;
-      items: MondayItem[];
-    }
-  | { message?: string; error?: string };
 
 function getErrorText(error: unknown) {
   if (!error) return null;
@@ -51,9 +42,9 @@ function getErrorText(error: unknown) {
   return 'Ошибка загрузки';
 }
 
-function getItemStatus(item: MondayItem) {
-  const v = item.status ?? '';
-  return v.trim() ? v.trim() : '-';
+function getItemStatus(item: Lift) {
+  const v = (item.status ?? '').trim();
+  return v ? v : '-';
 }
 
 function fmt(v: string | null | undefined) {
@@ -65,26 +56,21 @@ const GROUP_ORDER = ['LIFT 1', 'LIFT 2', 'LIFT 3', 'PAINT BOOTH'] as const;
 
 export default function PortalLiftsPage() {
   const { t } = useLanguage();
-  const lifts = useApiSWR<LiftsResponse>('/monday/lifts');
+  const lifts = useApiSWR<Lift[]>('/lifts');
   const { data, isLoading, mutate } = lifts;
 
   const liftsErrorText = useMemo(() => {
     const swrErrorText = getErrorText(lifts.error);
     if (swrErrorText) return swrErrorText;
-    if (data && !('items' in data)) {
-      const msg = (data.message ?? data.error ?? '').toString().trim();
-      return msg ? msg : null;
-    }
     return null;
-  }, [data, lifts.error]);
+  }, [lifts.error]);
 
   const items = useMemo(() => {
-    if (!data || !('items' in data)) return [];
-    return data.items ?? [];
+    return data ?? [];
   }, [data]);
 
   const groups = useMemo(() => {
-    const buckets = new Map<string, MondayItem[]>();
+    const buckets = new Map<string, Lift[]>();
     for (const item of items) {
       const key = (item.group ?? 'Other').toString().trim() || 'Other';
       const list = buckets.get(key) ?? [];
@@ -92,7 +78,7 @@ export default function PortalLiftsPage() {
       buckets.set(key, list);
     }
 
-    const ordered: Array<{ title: string; items: MondayItem[] }> = [];
+    const ordered: Array<{ title: string; items: Lift[] }> = [];
     for (const name of GROUP_ORDER) {
       const list = buckets.get(name);
       if (list && list.length > 0) ordered.push({ title: name, items: list });
@@ -103,9 +89,6 @@ export default function PortalLiftsPage() {
     }
     return ordered;
   }, [items]);
-
-  const boardName =
-    data && 'board' in data && data.board ? data.board.name : null;
 
   return (
     <div className="space-y-6">
@@ -118,7 +101,6 @@ export default function PortalLiftsPage() {
         </h1>
         <div className="text-gray-400 text-sm mt-2">
           {t.portal.lifts.subtitle}
-          {boardName ? ` • ${boardName}` : ''}
         </div>
       </div>
 
@@ -186,12 +168,12 @@ export default function PortalLiftsPage() {
                           <div className="text-white font-medium">
                             {item.name}
                           </div>
-                          {(item.car || item.notes) && (
+                          {(item.vehicle || item.notes) && (
                             <div className="text-xs text-gray-500 mt-1">
-                              {item.car
-                                ? `${t.portal.lifts.car}: ${item.car}`
+                              {item.vehicle
+                                ? `${t.portal.lifts.car}: ${item.vehicle.make} ${item.vehicle.model} (${item.vehicle.year})`
                                 : ''}
-                              {item.car && item.notes ? ' • ' : ''}
+                              {item.vehicle && item.notes ? ' • ' : ''}
                               {item.notes
                                 ? `${t.portal.lifts.notes}: ${item.notes}`
                                 : ''}

@@ -16,26 +16,18 @@ type Vehicle = {
   currentMileage?: number;
 };
 
-type MondayItem = {
+type Lift = {
   id: string;
   name: string;
-  group?: string | null;
-  status: string | null;
+  group: string;
+  status: string;
   workTime?: string | null;
   workType?: string | null;
-  car?: string | null;
   notes?: string | null;
   mechanic?: string | null;
+  vehicleId?: string | null;
+  vehicle?: { id: string; make: string; model: string; year: number } | null;
 };
-
-type LiftsResponse =
-  | {
-      board: { id: string; name: string } | null;
-      statusColumnId: string;
-      columns?: Record<string, string>;
-      items: MondayItem[];
-    }
-  | { message?: string; error?: string };
 
 function getErrorText(error: unknown) {
   if (!error) return null;
@@ -61,9 +53,9 @@ function getErrorText(error: unknown) {
   return 'Ошибка загрузки';
 }
 
-function getItemStatus(item: MondayItem) {
+function getItemStatus(item: Lift) {
   const v = item.status ?? '';
-  return v.trim();
+  return v.toString().trim();
 }
 
 function fmt(v: string | null | undefined) {
@@ -79,27 +71,22 @@ const GROUP_ORDER = ['LIFT 1', 'LIFT 2', 'LIFT 3', 'PAINT BOOTH'] as const;
 
 export default function AdminLiftsPage() {
   const { t } = useLanguage();
-  const lifts = useApiSWR<LiftsResponse>('/monday/lifts');
+  const lifts = useApiSWR<Lift[]>('/lifts');
   const { data, isLoading, mutate } = lifts;
   const vehicles = useApiSWR<Vehicle[]>('/vehicles');
 
   const liftsErrorText = useMemo(() => {
     const swrErrorText = getErrorText(lifts.error);
     if (swrErrorText) return swrErrorText;
-    if (data && !('items' in data)) {
-      const msg = (data.message ?? data.error ?? '').toString().trim();
-      return msg ? msg : null;
-    }
     return null;
-  }, [data, lifts.error]);
+  }, [lifts.error]);
 
   const items = useMemo(() => {
-    if (!data || !('items' in data)) return [];
-    return data.items ?? [];
+    return data ?? [];
   }, [data]);
 
   const groups = useMemo(() => {
-    const buckets = new Map<string, MondayItem[]>();
+    const buckets = new Map<string, Lift[]>();
     for (const item of items) {
       const key = (item.group ?? 'Other').toString().trim() || 'Other';
       const list = buckets.get(key) ?? [];
@@ -107,7 +94,7 @@ export default function AdminLiftsPage() {
       buckets.set(key, list);
     }
 
-    const ordered: Array<{ title: string; items: MondayItem[] }> = [];
+    const ordered: Array<{ title: string; items: Lift[] }> = [];
     for (const name of GROUP_ORDER) {
       const list = buckets.get(name);
       if (list && list.length > 0) ordered.push({ title: name, items: list });
@@ -118,9 +105,6 @@ export default function AdminLiftsPage() {
     }
     return ordered;
   }, [items]);
-
-  const boardName =
-    data && 'board' in data && data.board ? data.board.name : null;
 
   const [savingStatusId, setSavingStatusId] = useState<string | null>(null);
   const [savingCarId, setSavingCarId] = useState<string | null>(null);
@@ -133,27 +117,18 @@ export default function AdminLiftsPage() {
     return list;
   }, [vehicles.data]);
 
-  const vehicleIdByLabel = useMemo(() => {
-    const map = new Map<string, string>();
-    for (const v of vehicles.data ?? []) {
-      map.set(vehicleLabel(v), v.id);
-    }
-    return map;
-  }, [vehicles.data]);
-
-  const renderItem = (item: MondayItem) => {
+  const renderItem = (item: Lift) => {
     const currentStatus = getItemStatus(item);
     const value =
       drafts[item.id] !== undefined ? drafts[item.id] : currentStatus;
     const isSavingStatus = savingStatusId === item.id;
     const isSavingCar = savingCarId === item.id;
-    const inferredVehicleId = item.car
-      ? vehicleIdByLabel.get(item.car.trim())
-      : undefined;
+    const inferredVehicleId = item.vehicleId ?? '';
     const selectedVehicleId =
       carDrafts[item.id] !== undefined
         ? carDrafts[item.id]
         : inferredVehicleId || '';
+    const carLabel = item.vehicle ? vehicleLabel(item.vehicle) : null;
 
     return (
       <div key={item.id} className="border border-white/10 rounded-xl p-4">
@@ -172,10 +147,10 @@ export default function AdminLiftsPage() {
               <div>
                 {t.admin.lifts.mechanic}: {fmt(item.mechanic)}
               </div>
-              {(item.car || item.notes) && (
+              {(carLabel || item.notes) && (
                 <div>
-                  {item.car ? `${t.admin.lifts.car}: ${item.car}` : ''}
-                  {item.car && item.notes ? ' • ' : ''}
+                  {carLabel ? `${t.admin.lifts.car}: ${carLabel}` : ''}
+                  {carLabel && item.notes ? ' • ' : ''}
                   {item.notes ? `${t.admin.lifts.notes}: ${item.notes}` : ''}
                 </div>
               )}
@@ -207,7 +182,7 @@ export default function AdminLiftsPage() {
                 onClick={async () => {
                   setSavingCarId(item.id);
                   try {
-                    await api.put(`/monday/lifts/${item.id}/car`, {
+                    await api.put(`/lifts/${item.id}`, {
                       vehicleId: selectedVehicleId ? selectedVehicleId : null,
                     });
                     toast.success(t.admin.lifts.saved);
@@ -249,9 +224,7 @@ export default function AdminLiftsPage() {
                   if (!nextStatus) return;
                   setSavingStatusId(item.id);
                   try {
-                    await api.put(`/monday/lifts/${item.id}/status`, {
-                      status: nextStatus,
-                    });
+                    await api.put(`/lifts/${item.id}`, { status: nextStatus });
                     toast.success(t.admin.lifts.saved);
                     setDrafts((prev) => {
                       const copy = { ...prev };
@@ -287,7 +260,6 @@ export default function AdminLiftsPage() {
         </h1>
         <div className="text-gray-400 text-sm mt-2">
           {t.admin.lifts.subtitle}
-          {boardName ? ` • ${boardName}` : ''}
         </div>
       </div>
 
