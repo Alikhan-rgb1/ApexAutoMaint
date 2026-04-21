@@ -6,6 +6,15 @@ import { api } from '@/app/lib/api';
 import { useApiSWR } from '../../lib/swr';
 import { useLanguage } from '../../context/LanguageContext';
 
+type Vehicle = {
+  id: string;
+  make: string;
+  model: string;
+  year: number;
+  vin?: string | null;
+  currentMileage?: number;
+};
+
 type MondayItem = {
   id: string;
   name: string;
@@ -37,11 +46,16 @@ function fmt(v: string | null | undefined) {
   return s ? s : '-';
 }
 
+function vehicleLabel(v: Vehicle) {
+  return `${v.make} ${v.model} (${v.year})`;
+}
+
 const GROUP_ORDER = ['LIFT 1', 'LIFT 2', 'LIFT 3', 'PAINT BOOTH'] as const;
 
 export default function AdminLiftsPage() {
   const { t } = useLanguage();
   const { data, isLoading, mutate } = useApiSWR<LiftsResponse>('/monday/lifts');
+  const vehicles = useApiSWR<Vehicle[]>('/vehicles');
 
   const items = useMemo(() => {
     if (!data || !('items' in data)) return [];
@@ -72,8 +86,159 @@ export default function AdminLiftsPage() {
   const boardName =
     data && 'board' in data && data.board ? data.board.name : null;
 
-  const [savingId, setSavingId] = useState<string | null>(null);
+  const [savingStatusId, setSavingStatusId] = useState<string | null>(null);
+  const [savingCarId, setSavingCarId] = useState<string | null>(null);
   const [drafts, setDrafts] = useState<Record<string, string>>({});
+  const [carDrafts, setCarDrafts] = useState<Record<string, string>>({});
+
+  const vehicleOptions = useMemo(() => {
+    const list = vehicles.data ? [...vehicles.data] : [];
+    list.sort((a, b) => vehicleLabel(a).localeCompare(vehicleLabel(b)));
+    return list;
+  }, [vehicles.data]);
+
+  const vehicleIdByLabel = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const v of vehicles.data ?? []) {
+      map.set(vehicleLabel(v), v.id);
+    }
+    return map;
+  }, [vehicles.data]);
+
+  const renderItem = (item: MondayItem) => {
+    const currentStatus = getItemStatus(item);
+    const value =
+      drafts[item.id] !== undefined ? drafts[item.id] : currentStatus;
+    const isSavingStatus = savingStatusId === item.id;
+    const isSavingCar = savingCarId === item.id;
+    const inferredVehicleId = item.car
+      ? vehicleIdByLabel.get(item.car.trim())
+      : undefined;
+    const selectedVehicleId =
+      carDrafts[item.id] !== undefined
+        ? carDrafts[item.id]
+        : inferredVehicleId || '';
+
+    return (
+      <div key={item.id} className="border border-white/10 rounded-xl p-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="min-w-0">
+            <div className="text-white font-semibold truncate">{item.name}</div>
+            <div className="text-gray-400 text-sm mt-1">
+              {t.admin.lifts.status}: {currentStatus || '-'}
+            </div>
+            <div className="text-xs text-gray-500 mt-2 space-y-1">
+              <div>
+                {t.admin.lifts.workType}: {fmt(item.workType)}
+                {' • '}
+                {t.admin.lifts.workTime}: {fmt(item.workTime)}
+              </div>
+              <div>
+                {t.admin.lifts.mechanic}: {fmt(item.mechanic)}
+              </div>
+              {(item.car || item.notes) && (
+                <div>
+                  {item.car ? `${t.admin.lifts.car}: ${item.car}` : ''}
+                  {item.car && item.notes ? ' • ' : ''}
+                  {item.notes ? `${t.admin.lifts.notes}: ${item.notes}` : ''}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 sm:items-end">
+            <div className="flex flex-col sm:flex-row gap-2 sm:items-center w-full">
+              <select
+                value={selectedVehicleId}
+                onChange={(e) =>
+                  setCarDrafts((prev) => ({
+                    ...prev,
+                    [item.id]: e.target.value,
+                  }))
+                }
+                className="bg-dark border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors w-full sm:w-64"
+              >
+                <option value="">{t.admin.lifts.selectCar}</option>
+                {vehicleOptions.map((v) => (
+                  <option key={v.id} value={v.id}>
+                    {vehicleLabel(v)}
+                  </option>
+                ))}
+              </select>
+              <button
+                type="button"
+                disabled={isSavingCar || vehicles.isLoading}
+                onClick={async () => {
+                  setSavingCarId(item.id);
+                  try {
+                    await api.put(`/monday/lifts/${item.id}/car`, {
+                      vehicleId: selectedVehicleId ? selectedVehicleId : null,
+                    });
+                    toast.success(t.admin.lifts.saved);
+                    setCarDrafts((prev) => {
+                      const copy = { ...prev };
+                      delete copy[item.id];
+                      return copy;
+                    });
+                    await mutate();
+                  } catch {
+                    toast.error(t.admin.lifts.saveFailed);
+                  } finally {
+                    setSavingCarId(null);
+                  }
+                }}
+                className="px-4 py-2 border border-white/10 text-gray-200 text-xs font-bold uppercase tracking-widest rounded hover:border-gold hover:text-gold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {t.admin.lifts.setCar}
+              </button>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-2 sm:items-center w-full">
+              <input
+                value={value}
+                onChange={(e) =>
+                  setDrafts((prev) => ({
+                    ...prev,
+                    [item.id]: e.target.value,
+                  }))
+                }
+                placeholder={t.admin.lifts.setStatus}
+                className="bg-dark border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors w-full sm:w-64"
+              />
+              <button
+                type="button"
+                disabled={isSavingStatus}
+                onClick={async () => {
+                  const nextStatus = (drafts[item.id] ?? '').trim();
+                  if (!nextStatus) return;
+                  setSavingStatusId(item.id);
+                  try {
+                    await api.put(`/monday/lifts/${item.id}/status`, {
+                      status: nextStatus,
+                    });
+                    toast.success(t.admin.lifts.saved);
+                    setDrafts((prev) => {
+                      const copy = { ...prev };
+                      delete copy[item.id];
+                      return copy;
+                    });
+                    await mutate();
+                  } catch {
+                    toast.error(t.admin.lifts.saveFailed);
+                  } finally {
+                    setSavingStatusId(null);
+                  }
+                }}
+                className="px-4 py-2 bg-gold text-dark text-xs font-bold uppercase tracking-widest rounded hover:bg-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {t.admin.lifts.setStatus}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="space-y-6">
@@ -106,97 +271,7 @@ export default function AdminLiftsPage() {
                 <div className="text-gold text-xs font-bold uppercase tracking-[0.2em] mb-4">
                   {g.title}
                 </div>
-                <div className="space-y-3">
-                  {g.items.map((item) => {
-                    const currentStatus = getItemStatus(item);
-                    const value =
-                      drafts[item.id] !== undefined
-                        ? drafts[item.id]
-                        : currentStatus;
-                    const isSaving = savingId === item.id;
-                    return (
-                      <div
-                        key={item.id}
-                        className="border border-white/10 rounded-xl p-4"
-                      >
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                          <div className="min-w-0">
-                            <div className="text-white font-semibold truncate">
-                              {item.name}
-                            </div>
-                            <div className="text-gray-400 text-sm mt-1">
-                              {t.admin.lifts.status}: {currentStatus || '-'}
-                            </div>
-                            <div className="text-xs text-gray-500 mt-2 space-y-1">
-                              <div>
-                                {t.admin.lifts.workType}: {fmt(item.workType)}
-                                {' • '}
-                                {t.admin.lifts.workTime}: {fmt(item.workTime)}
-                              </div>
-                              <div>
-                                {t.admin.lifts.mechanic}: {fmt(item.mechanic)}
-                              </div>
-                              {(item.car || item.notes) && (
-                                <div>
-                                  {item.car
-                                    ? `${t.admin.lifts.car}: ${item.car}`
-                                    : ''}
-                                  {item.car && item.notes ? ' • ' : ''}
-                                  {item.notes
-                                    ? `${t.admin.lifts.notes}: ${item.notes}`
-                                    : ''}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
-                            <input
-                              value={value}
-                              onChange={(e) =>
-                                setDrafts((prev) => ({
-                                  ...prev,
-                                  [item.id]: e.target.value,
-                                }))
-                              }
-                              placeholder={t.admin.lifts.setStatus}
-                              className="bg-dark border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors w-full sm:w-64"
-                            />
-                            <button
-                              type="button"
-                              disabled={isSaving}
-                              onClick={async () => {
-                                const nextStatus = (drafts[item.id] ?? '').trim();
-                                if (!nextStatus) return;
-                                setSavingId(item.id);
-                                try {
-                                  await api.put(
-                                    `/monday/lifts/${item.id}/status`,
-                                    { status: nextStatus },
-                                  );
-                                  toast.success(t.admin.lifts.saved);
-                                  setDrafts((prev) => {
-                                    const copy = { ...prev };
-                                    delete copy[item.id];
-                                    return copy;
-                                  });
-                                  await mutate();
-                                } catch {
-                                  toast.error(t.admin.lifts.saveFailed);
-                                } finally {
-                                  setSavingId(null);
-                                }
-                              }}
-                              className="px-4 py-2 bg-gold text-dark text-xs font-bold uppercase tracking-widest rounded hover:bg-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-                            >
-                              {t.admin.lifts.setStatus}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                <div className="space-y-3">{g.items.map(renderItem)}</div>
               </div>
             ))}
           </div>

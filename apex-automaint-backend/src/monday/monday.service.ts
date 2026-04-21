@@ -356,4 +356,33 @@ export class MondayService {
       id: data.change_simple_column_value?.id ?? itemId,
     };
   }
+
+  async setItemColumnValue(
+    boardId: number,
+    itemId: string,
+    columnId: string,
+    value: string,
+  ) {
+    const data = await this.request<{
+      change_simple_column_value: { id: string } | null;
+    }>(
+      `
+      mutation ($boardId: Int!, $itemId: Int!, $columnId: String!, $value: String!) {
+        change_simple_column_value(
+          board_id: $boardId,
+          item_id: $itemId,
+          column_id: $columnId,
+          value: $value
+        ) {
+          id
+        }
+      }
+      `,
+      { boardId, itemId: Number(itemId), columnId, value },
+    );
+    return {
+      ok: true as const,
+      id: data.change_simple_column_value?.id ?? itemId,
+    };
+  }
 }
