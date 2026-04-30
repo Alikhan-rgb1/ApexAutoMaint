@@ -13,17 +13,12 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
   const { t } = useLanguage();
   return (
-    <section className="relative h-screen min-h-[800px] flex items-center bg-[#0a0a0a] text-white overflow-hidden">
-      {/* Background with Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/95 to-dark/40 z-0"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent z-0"></div>
+    <section className="relative min-h-screen flex items-center bg-[#060b12] text-white overflow-hidden py-20 lg:py-0">
+      {/* Subtle background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(34,168,255,0.05),transparent)] z-0"></div>
       
-      {/* Abstract Shapes/Glow */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"></div>
-
-      <div className="container relative z-10 pt-32 md:pt-36 lg:pt-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container relative z-10">
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* Content */}
           <motion.div 
@@ -90,7 +85,7 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 1.2, ease: "easeOut" }}
-            className="hidden lg:block relative h-[600px]"
+            className="relative h-[400px] lg:h-[600px] w-full"
           >
             <div className="absolute inset-0 z-10">
               <Car3D />

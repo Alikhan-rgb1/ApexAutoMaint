@@ -15,7 +15,7 @@ function Loader() {
   );
 }
 
-// Используем качественную модель машины (Porsche 911)
+// Используем качественную модель машины
 function Model(props: any) {
   const { scene } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/lamborghini/model.gltf');
   
@@ -24,18 +24,19 @@ function Model(props: any) {
   // Медленное вращение для динамики
   useFrame((state) => {
     if (ref.current) {
-      ref.current.rotation.y = state.clock.getElapsedTime() * 0.2;
+      ref.current.rotation.y = state.clock.getElapsedTime() * 0.15;
     }
   });
 
   return <primitive ref={ref} object={scene} {...props} />;
 }
 
+useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/lamborghini/model.gltf');
+
 const Car3D: React.FC = () => {
   return (
-    <div className="w-full h-full min-h-[400px] lg:min-h-[600px] cursor-grab active:cursor-grabbing">
-      <Canvas dpr={[1, 2]} shadows camera={{ fov: 45, position: [0, 0, 5] }}>
-        <color attach="background" args={['#0a0a0a']} />
+    <div className="w-full h-full min-h-[300px] lg:min-h-[600px] cursor-grab active:cursor-grabbing">
+      <Canvas dpr={[1, 2]} shadows camera={{ fov: 45, position: [0, 0, 5] }} gl={{ alpha: true }}>
         <Suspense fallback={<Loader />}>
           <PresentationControls
             speed={1.5}
