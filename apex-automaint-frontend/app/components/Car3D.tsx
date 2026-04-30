@@ -15,9 +15,9 @@ function Loader() {
   );
 }
 
-// Используем качественную модель машины
+// Используем качественную модель машины (Porsche 911)
 function Model(props: any) {
-  const { scene } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/lamborghini/model.gltf');
+  const { scene } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/porsche-911-930-turbo-1975/model.gltf');
   
   const ref = useRef<THREE.Group>(null);
   
@@ -31,24 +31,24 @@ function Model(props: any) {
   return <primitive ref={ref} object={scene} {...props} />;
 }
 
-useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/lamborghini/model.gltf');
-
 const Car3D: React.FC = () => {
   return (
-    <div className="w-full h-full min-h-[300px] lg:min-h-[600px] cursor-grab active:cursor-grabbing">
-      <Canvas dpr={[1, 2]} shadows camera={{ fov: 45, position: [0, 0, 5] }} gl={{ alpha: true }}>
+    <div className="w-full h-full min-h-[400px] lg:min-h-[600px] cursor-grab active:cursor-grabbing">
+      <Canvas dpr={[1, 2]} shadows camera={{ fov: 45, position: [0, 0, 8] }} gl={{ alpha: true }}>
         <Suspense fallback={<Loader />}>
           <PresentationControls
             speed={1.5}
             global
-            zoom={0.7}
+            zoom={1.2}
             polar={[-0.1, Math.PI / 4]}
             rotation={[0, Math.PI / 4, 0]}
           >
             <Stage environment="city" intensity={0.5} shadows={false}>
-              <Model scale={0.012} />
+              <Model scale={0.7} />
             </Stage>
           </PresentationControls>
+          
+          <Environment preset="city" />
           
           {/* Дополнительное освещение для премиального вида */}
           <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />

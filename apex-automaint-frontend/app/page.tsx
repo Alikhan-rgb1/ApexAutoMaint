@@ -16,6 +16,7 @@ import BookingModal from './components/BookingModal';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { useLanguage } from './context/LanguageContext';
+import Car3D from './components/Car3D';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -318,11 +319,9 @@ export default function Home() {
               <div className="relative min-h-[420px] lg:min-h-[620px]">
                 <div className="absolute right-[8%] top-1/2 -translate-y-1/2 w-[360px] h-[360px] md:w-[500px] md:h-[500px] rounded-full bg-[radial-gradient(circle,_rgba(34,168,255,0.18)_0%,_transparent_70%)]" />
                 <div className="absolute inset-0 flex items-center justify-end">
-                  <img
-                    src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1200&q=80&fm=jpg&auto=format&fit=crop"
-                    alt="ALWAKEEL AUTO MAINT"
-                    className="w-full max-w-[760px] object-contain drop-shadow-[0_0_60px_rgba(34,168,255,0.28)]"
-                  />
+                  <div className="w-full h-full lg:h-[620px]">
+                    <Car3D />
+                  </div>
                 </div>
               </div>
             </div>
