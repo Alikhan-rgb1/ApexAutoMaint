@@ -17,7 +17,7 @@ function Loader() {
 
 // Используем качественную модель машины (Porsche 911)
 function Model(props: any) {
-  const { scene } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/porsche-911-930-turbo-1975/model.gltf');
+  const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/porsche-911-930-turbo-1975/model.gltf');
   
   const ref = useRef<THREE.Group>(null);
   
