@@ -15,9 +15,9 @@ function Loader() {
   );
 }
 
-// Используем качественную модель машины (Porsche 911)
+// Используем качественную модель машины (Ferrari)
 function Model(props: any) {
-  const { scene } = useGLTF('https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/models/porsche-911-930-turbo-1975/model.gltf');
+  const { scene } = useGLTF('/models/car.glb');
   
   const ref = useRef<THREE.Group>(null);
   
@@ -31,20 +31,22 @@ function Model(props: any) {
   return <primitive ref={ref} object={scene} {...props} />;
 }
 
+useGLTF.preload('/models/car.glb');
+
 const Car3D: React.FC = () => {
   return (
     <div className="w-full h-full min-h-[400px] lg:min-h-[600px] cursor-grab active:cursor-grabbing">
-      <Canvas dpr={[1, 2]} shadows camera={{ fov: 45, position: [0, 0, 8] }} gl={{ alpha: true }}>
+      <Canvas dpr={[1, 2]} shadows camera={{ fov: 45, position: [0, 0, 10] }} gl={{ alpha: true }}>
         <Suspense fallback={<Loader />}>
           <PresentationControls
             speed={1.5}
             global
-            zoom={1.2}
+            zoom={1}
             polar={[-0.1, Math.PI / 4]}
             rotation={[0, Math.PI / 4, 0]}
           >
             <Stage environment="city" intensity={0.5} shadows={false}>
-              <Model scale={0.7} />
+              <Model scale={1} />
             </Stage>
           </PresentationControls>
           
