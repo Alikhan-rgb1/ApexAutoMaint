@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, ShieldCheck, Clock, Award } from 'lucide-react';
 
 import { useLanguage } from '../context/LanguageContext';
+import Car3D from './Car3D';
 
 interface HeroProps {
   onBookClick?: () => void;
@@ -12,14 +13,10 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
   const { t } = useLanguage();
   return (
-    <section className="relative h-screen min-h-[800px] flex items-center bg-dark text-white overflow-hidden">
+    <section className="relative h-screen min-h-[800px] flex items-center bg-[#0a0a0a] text-white overflow-hidden">
       {/* Background with Gradient Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center z-0" 
-        style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop)' }}
-      ></div>
       <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/95 to-dark/40 z-0"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent z-0"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent z-0"></div>
       
       {/* Abstract Shapes/Glow */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -88,50 +85,21 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
             </div>
           </motion.div>
 
-          {/* Visual/Image Placeholder */}
+          {/* Visual/Image Placeholder - Now 3D Car */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="hidden lg:block relative"
+            transition={{ delay: 0.6, duration: 1.2, ease: "easeOut" }}
+            className="hidden lg:block relative h-[600px]"
           >
-            <div className="relative z-10 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm border border-white/10 p-8 rounded-2xl">
-              <div className="grid gap-6">
-                <div className="bg-[#0a0a0a] backdrop-blur-md p-6 rounded-xl border border-white/20 flex items-start gap-4">
-                  <div className="p-3 bg-gold/10 rounded-lg text-gold">
-                    <ShieldCheck size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold mb-1">{t.hero.cards.iso.title}</h3>
-                    <p className="text-sm text-white">{t.hero.cards.iso.desc}</p>
-                  </div>
-                </div>
-                
-                <div className="bg-[#0a0a0a] backdrop-blur-md p-6 rounded-xl border border-white/20 flex items-start gap-4">
-                  <div className="p-3 bg-gold/10 rounded-lg text-gold">
-                    <Clock size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold mb-1">{t.hero.cards.fast.title}</h3>
-                    <p className="text-sm text-white">{t.hero.cards.fast.desc}</p>
-                  </div>
-                </div>
-
-                <div className="bg-[#0a0a0a] backdrop-blur-md p-6 rounded-xl border border-white/20 flex items-start gap-4">
-                  <div className="p-3 bg-gold/10 rounded-lg text-gold">
-                    <Award size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold mb-1">{t.hero.cards.expert.title}</h3>
-                    <p className="text-sm text-white">{t.hero.cards.expert.desc}</p>
-                  </div>
-                </div>
-              </div>
+            <div className="absolute inset-0 z-10">
+              <Car3D />
             </div>
             
-            {/* Decorative background behind cards */}
-            <div className="absolute -top-10 -right-10 w-full h-full border border-gold/20 rounded-2xl -z-10"></div>
-            <div className="absolute -bottom-10 -left-10 w-full h-full border border-white/5 rounded-2xl -z-10"></div>
+            {/* Decorative background elements */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-600/5 rounded-full blur-[120px] -z-10"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] border border-white/5 rounded-full -z-10 animate-[spin_20s_linear_infinite]"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] border border-blue-500/10 rounded-full -z-10 animate-[spin_15s_linear_infinite_reverse]"></div>
           </motion.div>
         </div>
       </div>
